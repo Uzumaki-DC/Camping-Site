@@ -409,20 +409,29 @@ export const tanayActivityGroups: ActivityGroup[] = [
   },
 ]
 
-export const nearbyAttractions = [
-  { name: 'Pililia Wind Farm', time: '12 mins away', distance: '5.3 km' },
-  { name: 'Regina Rica', time: '12 mins away', distance: '5.9 km' },
-  { name: 'Daranak Falls', time: '27 mins away', distance: '15 km' },
-  { name: 'Batlag Falls', time: '47 mins away', distance: '25.2 km' },
-  { name: 'Calinawan Cave', time: '31 mins away', distance: '14.9 km' },
-  { name: 'Emprest Nature Park', time: '45 mins away', distance: '24.8 km' },
-  { name: 'Pupot Cave and Spring', time: '34 mins away', distance: '15.4 km' },
-  { name: 'Paglitaw Natural Pool', time: '39 mins away', distance: '16.7 km' },
-  { name: 'Masungi Georeserve', time: '34 mins away', distance: '22.1 km' },
-  { name: 'Treasure Mountain', time: '35 mins away', distance: '18.1 km' },
-  { name: 'El Patio Razon', time: '34 mins away', distance: '18.2 km' },
-  { name: 'San Ildefonso de Toledo Parish', time: '34 mins away', distance: '18.7 km' },
-  { name: 'Tara sa Gulod', time: '34 mins away', distance: '14.3 km' },
+export interface NearbyAttraction {
+  name: string
+  time: string
+  distance: string
+  minutes: number
+  image?: string
+}
+
+// Sorted by increasing travel time away from the Tanay camp.
+export const nearbyAttractions: NearbyAttraction[] = [
+  { name: 'Pililia Wind Farm', time: '12 mins away', distance: '5.3 km', minutes: 12, image: '/images/stops/pililla-wind-farm.jpg' },
+  { name: 'Regina Rica', time: '12 mins away', distance: '5.9 km', minutes: 12, image: '/images/stops/regina-rica.jpg' },
+  { name: 'Daranak Falls', time: '27 mins away', distance: '15 km', minutes: 27, image: '/images/stops/daranak-falls.jpg' },
+  { name: 'Calinawan Cave', time: '31 mins away', distance: '14.9 km', minutes: 31 },
+  { name: 'Tara sa Gulod', time: '34 mins away', distance: '14.3 km', minutes: 34 },
+  { name: 'Pupot Cave and Spring', time: '34 mins away', distance: '15.4 km', minutes: 34 },
+  { name: 'Masungi Georeserve', time: '34 mins away', distance: '22.1 km', minutes: 34, image: '/images/stops/masungi-georeserve.jpg' },
+  { name: 'El Patio Razon', time: '34 mins away', distance: '18.2 km', minutes: 34 },
+  { name: 'San Ildefonso de Toledo Parish', time: '34 mins away', distance: '18.7 km', minutes: 34 },
+  { name: 'Treasure Mountain', time: '35 mins away', distance: '18.1 km', minutes: 35 },
+  { name: 'Paglitaw Natural Pool', time: '39 mins away', distance: '16.7 km', minutes: 39 },
+  { name: 'Emprest Nature Park', time: '45 mins away', distance: '24.8 km', minutes: 45 },
+  { name: 'Batlag Falls', time: '47 mins away', distance: '25.2 km', minutes: 47, image: '/images/stops/batlag-falls.jpg' },
 ]
 
 export const blogPosts: BlogPost[] = [

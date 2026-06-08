@@ -200,12 +200,35 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         <section className="py-24 px-4">
           <div className="max-w-7xl mx-auto">
             <p className="text-xs uppercase tracking-wider text-muted-foreground mb-4">Nearby Attractions</p>
-            <h2 className="text-4xl md:text-5xl font-serif mb-10">Add these stops to your Tanay trip.</h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4">
+            <h2 className="text-4xl md:text-5xl font-serif mb-3">Add these stops to your Tanay trip.</h2>
+            <p className="text-muted-foreground mb-10 max-w-2xl">
+              Ordered by travel time from camp, nearest first. More stop photos coming soon.
+            </p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {nearbyAttractions.map((attraction) => (
-                <div key={attraction.name} className="flex justify-between gap-4 border-b border-border pb-3">
-                  <span className="font-medium">{attraction.name}</span>
-                  <span className="text-sm text-muted-foreground whitespace-nowrap">{attraction.time}</span>
+                <div key={attraction.name} className="border border-border overflow-hidden flex flex-col">
+                  <div className="relative aspect-[4/3] bg-secondary">
+                    {attraction.image ? (
+                      <Image
+                        src={attraction.image}
+                        alt={attraction.name}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
+                        <MapPin className="h-8 w-8" />
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-4 flex items-center justify-between gap-4">
+                    <div>
+                      <p className="font-medium">{attraction.name}</p>
+                      <p className="text-sm text-muted-foreground">{attraction.distance}</p>
+                    </div>
+                    <span className="text-sm text-muted-foreground whitespace-nowrap">{attraction.time}</span>
+                  </div>
                 </div>
               ))}
             </div>
