@@ -5,14 +5,36 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
 const galleryImages = [
-  { src: "/images/hero-airstream.jpg", alt: "Hilltop campsite at Tanay Windmills Viewpoint", category: "Campgrounds" },
-  { src: "/images/campfire.jpg", alt: "Bonfire night at camp", category: "Camp Life" },
-  { src: "/images/family-reunion.jpg", alt: "Group camping gathering", category: "Groups" },
-  { src: "/images/dining.jpg", alt: "Camp dining and coffee", category: "Cafe" },
-  { src: "/images/asheville.jpg", alt: "Highland landscape", category: "Views" },
-  { src: "/images/sonoma.jpg", alt: "Coffee country camp atmosphere", category: "Amadeo" },
-  { src: "/images/yosemite.jpg", alt: "Mountain and nature views", category: "Nearby Nature" },
-  { src: "/images/catskills.jpg", alt: "Tree-lined outdoor setting", category: "Orchard" },
+  {
+    src: "/images/tanay-grounds.jpg",
+    alt: "Shaded lawn with mango trees and wagon-wheel benches",
+    category: "Grounds",
+  },
+  {
+    src: "/images/tanay-pavilion.jpg",
+    alt: "Open-air dining pavilion framed by mango trees",
+    category: "Pavilion",
+  },
+  {
+    src: "/images/tanay-pavilion-wide.jpg",
+    alt: "Wide view of the camp pavilion and surrounding greenery",
+    category: "Pavilion",
+  },
+  {
+    src: "/images/tanay-watchtower.jpg",
+    alt: "Watchtower beside the camp pavilion under blue skies",
+    category: "Grounds",
+  },
+  {
+    src: "/images/tanay-pavilion-side.jpg",
+    alt: "Side view of the pavilion with potted plants and garden",
+    category: "Pavilion",
+  },
+  {
+    src: "/images/tanay-restrooms.jpg",
+    alt: "Camp restrooms with rustic wooden doors",
+    category: "Facilities",
+  },
 ]
 
 export default function GalleryPage() {
