@@ -10,9 +10,15 @@ const tanayCamperImages = Array.from({ length: 24 }, (_, i) => ({
   category: "Tanay Windmills",
 }))
 
-const galleryImages = [
+const amadeoCamperImages = Array.from({ length: 3 }, (_, i) => ({
+  src: `/images/amadeo-campers/camper-${i + 1}.png`,
+  alt: `Camper photo from the Amadeo camping site in Cavite (${i + 1})`,
+  category: "Amadeo",
+}))
 
-  ...tanayCamperImages
+const galleryImages = [
+  ...tanayCamperImages,
+  ...amadeoCamperImages,
 ]
 
 export default function GalleryPage() {

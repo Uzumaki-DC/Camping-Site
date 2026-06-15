@@ -202,7 +202,7 @@ export const locations: Location[] = [
     image: '/images/sonoma.jpg',
     coordinates: { lat: 14.1706, lng: 120.9239 },
     region: 'south',
-    address: 'Brgy. Dagatan, Amadeo, Cavite 4119, Philippines',
+    address: 'Conchu Road, Barangay Pangil, Amadeo, Cavite',
     travelNotes: [
       'About 1.5 hours from Makati via CAVITEX or SLEX-Sta. Rosa exit.',
       'Public transport: bus to Tagaytay, then jeepney or van for hire toward Amadeo.',
