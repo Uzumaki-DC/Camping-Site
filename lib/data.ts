@@ -75,13 +75,13 @@ export interface FAQ {
 }
 
 export const contactInfo = {
-  phone: '+63 910 987 5807',
-  phoneDisplay: '+63 910 987 5807',
-  email: 'reservations@windmillscamp.ph',
+  phone: '0917-328-0907',
+  phoneDisplay: '0917-328-0907',
+  email: 'rentals@iubi.com.ph',
   facebook: 'https://www.facebook.com/viewpointcafe2022',
   instagram: 'https://www.instagram.com/tanaywindmillsviewpoint/',
-  gcash: '+63 910 987 5807',
-  gcashName: 'Windmills Camp Grounds',
+  gcash: '0916-766-2930',
+  gcashName: 'EDGAR F.',
 }
 
 export const locations: Location[] = [
@@ -96,7 +96,7 @@ export const locations: Location[] = [
     image: '/images/hero-airstream.jpg',
     coordinates: { lat: 14.5749, lng: 121.3746 },
     region: 'east',
-    address: 'Brgy. Cayabu, Tanay, Rizal 1980, Philippines',
+    address: 'Sitio Masalat, Brgy. Sampaloc, Tanay, Rizal',
     travelNotes: [
       'About 1.5 to 2 hours from Metro Manila via Marcos Highway / Marikina-Infanta Highway.',
       'Accessible through the scenic, well-paved Sitio Masalat Sampaloc-Pililla roads.',
@@ -390,7 +390,7 @@ export const tanayActivityGroups: ActivityGroup[] = [
   },
   {
     title: 'Family & Kids',
-    items: ['Storytelling by the campfire', 'Arts and crafts', 'Fishing activities', 'Treasure hunt', 'Camp bingo'],
+    items: ['Storytelling by the campfire', 'Arts and crafts', 'Treasure hunt', 'Camp bingo'],
   },
   {
     title: 'Food, Wellness & Add-ons',
@@ -402,7 +402,6 @@ export const tanayActivityGroups: ActivityGroup[] = [
       'Bird watching',
       'Yoga under the trees',
       'Meditation sessions',
-      'Acoustic night performances',
       'Photography area / Instagram spots',
       'Cafe beside the orchard',
     ],
