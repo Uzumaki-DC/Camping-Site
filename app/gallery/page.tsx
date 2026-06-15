@@ -4,6 +4,12 @@ import Image from "next/image"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
+const tanayCamperImages = Array.from({ length: 24 }, (_, i) => ({
+  src: `/images/tanay-campers/camper-${i + 1}.jpg`,
+  alt: `Camper photo from Windmills Viewpoint Campgrounds in Tanay (${i + 1})`,
+  category: "Tanay Windmills",
+}))
+
 const galleryImages = [
   { src: "/images/hero-airstream.jpg", alt: "Hilltop campsite at Tanay Windmills Viewpoint", category: "Campgrounds" },
   { src: "/images/campfire.jpg", alt: "Bonfire night at camp", category: "Camp Life" },
@@ -13,6 +19,7 @@ const galleryImages = [
   { src: "/images/sonoma.jpg", alt: "Coffee country camp atmosphere", category: "Amadeo" },
   { src: "/images/yosemite.jpg", alt: "Mountain and nature views", category: "Nearby Nature" },
   { src: "/images/catskills.jpg", alt: "Tree-lined outdoor setting", category: "Orchard" },
+  ...tanayCamperImages,
 ]
 
 export default function GalleryPage() {
