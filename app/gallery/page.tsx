@@ -11,15 +11,8 @@ const tanayCamperImages = Array.from({ length: 24 }, (_, i) => ({
 }))
 
 const galleryImages = [
-  { src: "/images/hero-airstream.jpg", alt: "Hilltop campsite at Tanay Windmills Viewpoint", category: "Campgrounds" },
-  { src: "/images/campfire.jpg", alt: "Bonfire night at camp", category: "Camp Life" },
-  { src: "/images/family-reunion.jpg", alt: "Group camping gathering", category: "Groups" },
-  { src: "/images/dining.jpg", alt: "Camp dining and coffee", category: "Cafe" },
-  { src: "/images/asheville.jpg", alt: "Highland landscape", category: "Views" },
-  { src: "/images/sonoma.jpg", alt: "Coffee country camp atmosphere", category: "Amadeo" },
-  { src: "/images/yosemite.jpg", alt: "Mountain and nature views", category: "Nearby Nature" },
-  { src: "/images/catskills.jpg", alt: "Tree-lined outdoor setting", category: "Orchard" },
-  ...tanayCamperImages,
+
+  ...tanayCamperImages
 ]
 
 export default function GalleryPage() {
