@@ -4,15 +4,21 @@ import Image from "next/image"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
+const tanayCamperImages = Array.from({ length: 24 }, (_, i) => ({
+  src: `/images/tanay-campers/camper-${i + 1}.jpg`,
+  alt: `Camper photo from Windmills Viewpoint Campgrounds in Tanay (${i + 1})`,
+  category: "Tanay Windmills",
+}))
+
+const amadeoCamperImages = Array.from({ length: 3 }, (_, i) => ({
+  src: `/images/amadeo-campers/camper-${i + 1}.png`,
+  alt: `Camper photo from the Amadeo camping site in Cavite (${i + 1})`,
+  category: "Amadeo",
+}))
+
 const galleryImages = [
-  { src: "/images/hero-airstream.jpg", alt: "Hilltop campsite at Tanay Windmills Viewpoint", category: "Campgrounds" },
-  { src: "/images/campfire.jpg", alt: "Bonfire night at camp", category: "Camp Life" },
-  { src: "/images/family-reunion.jpg", alt: "Group camping gathering", category: "Groups" },
-  { src: "/images/dining.jpg", alt: "Camp dining and coffee", category: "Cafe" },
-  { src: "/images/asheville.jpg", alt: "Highland landscape", category: "Views" },
-  { src: "/images/sonoma.jpg", alt: "Coffee country camp atmosphere", category: "Amadeo" },
-  { src: "/images/yosemite.jpg", alt: "Mountain and nature views", category: "Nearby Nature" },
-  { src: "/images/catskills.jpg", alt: "Tree-lined outdoor setting", category: "Orchard" },
+  ...tanayCamperImages,
+  ...amadeoCamperImages,
 ]
 
 export default function GalleryPage() {
