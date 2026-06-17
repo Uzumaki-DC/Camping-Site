@@ -57,10 +57,10 @@ export function Header({ transparent = false }: HeaderProps) {
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
               <span className={cn(
-                'text-xl tracking-[0.2em] font-bold uppercase',
+                'text-base sm:text-lg tracking-[0.15em] font-bold uppercase leading-tight',
                 transparent ? 'text-primary-foreground' : 'text-foreground'
               )}>
-                Windmills
+                Windmills Viewpoint Campgrounds
               </span>
             </Link>
           </div>

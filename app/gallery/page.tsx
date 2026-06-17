@@ -4,37 +4,21 @@ import Image from "next/image"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
+const tanayCamperImages = Array.from({ length: 24 }, (_, i) => ({
+  src: `/images/tanay-campers/camper-${i + 1}.jpg`,
+  alt: `Camper photo from Windmills Viewpoint Campgrounds in Tanay (${i + 1})`,
+  category: "Tanay Windmills",
+}))
+
+const amadeoCamperImages = Array.from({ length: 3 }, (_, i) => ({
+  src: `/images/amadeo-campers/camper-${i + 1}.png`,
+  alt: `Camper photo from the Amadeo camping site in Cavite (${i + 1})`,
+  category: "Amadeo",
+}))
+
 const galleryImages = [
-  {
-    src: "/images/tanay-grounds.jpg",
-    alt: "Shaded lawn with mango trees and wagon-wheel benches",
-    category: "Grounds",
-  },
-  {
-    src: "/images/tanay-pavilion.jpg",
-    alt: "Open-air dining pavilion framed by mango trees",
-    category: "Pavilion",
-  },
-  {
-    src: "/images/tanay-pavilion-wide.jpg",
-    alt: "Wide view of the camp pavilion and surrounding greenery",
-    category: "Pavilion",
-  },
-  {
-    src: "/images/tanay-watchtower.jpg",
-    alt: "Watchtower beside the camp pavilion under blue skies",
-    category: "Grounds",
-  },
-  {
-    src: "/images/tanay-pavilion-side.jpg",
-    alt: "Side view of the pavilion with potted plants and garden",
-    category: "Pavilion",
-  },
-  {
-    src: "/images/tanay-restrooms.jpg",
-    alt: "Camp restrooms with rustic wooden doors",
-    category: "Facilities",
-  },
+  ...tanayCamperImages,
+  ...amadeoCamperImages,
 ]
 
 export default function GalleryPage() {
