@@ -4,7 +4,8 @@ import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
 import { BookingWidget } from '@/components/booking-widget'
 import { TestimonialsCarousel } from '@/components/testimonials-carousel'
-import { contactInfo, locations, nearbyAttractions, tanayActivityGroups, tanayRateOptions } from '@/lib/data'
+import { NearbyAttractionsGrid } from '@/components/nearby-attractions-grid'
+import { contactInfo, locations, tanayNearbyAttractions, tanayActivityGroups, tanayRateOptions } from '@/lib/data'
 import { ArrowRight, Binoculars, CalendarCheck, Coffee, Flame, MapPin, Mountain, Tent, Users } from 'lucide-react'
 
 const tanay = locations.find((location) => location.id === 'tanay')!
@@ -164,14 +165,7 @@ export default function Home() {
               Build a day tour around Tanay favorites, then come back to camp for coffee, sunset, and a firepit night.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4">
-            {nearbyAttractions.slice(0, 10).map((attraction) => (
-              <div key={attraction.name} className="flex justify-between gap-4 border-b border-border pb-3">
-                <span className="font-medium">{attraction.name}</span>
-                <span className="text-sm text-muted-foreground whitespace-nowrap">{attraction.time}</span>
-              </div>
-            ))}
-          </div>
+          <NearbyAttractionsGrid attractions={tanayNearbyAttractions} limit={10} />
         </div>
       </section>
 

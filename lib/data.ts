@@ -47,6 +47,14 @@ export interface ActivityGroup {
   items: string[]
 }
 
+export interface NearbyAttraction {
+  name: string
+  time: string
+  distance: string
+  image: string
+  imageAlt: string
+}
+
 export interface BlogPost {
   id: string
   title: string
@@ -408,20 +416,143 @@ export const tanayActivityGroups: ActivityGroup[] = [
   },
 ]
 
-export const nearbyAttractions = [
-  { name: 'Pililia Wind Farm', time: '12 mins away', distance: '5.3 km' },
-  { name: 'Regina Rica', time: '12 mins away', distance: '5.9 km' },
-  { name: 'Daranak Falls', time: '27 mins away', distance: '15 km' },
-  { name: 'Batlag Falls', time: '47 mins away', distance: '25.2 km' },
-  { name: 'Calinawan Cave', time: '31 mins away', distance: '14.9 km' },
-  { name: 'Emprest Nature Park', time: '45 mins away', distance: '24.8 km' },
-  { name: 'Pupot Cave and Spring', time: '34 mins away', distance: '15.4 km' },
-  { name: 'Paglitaw Natural Pool', time: '39 mins away', distance: '16.7 km' },
-  { name: 'Masungi Georeserve', time: '34 mins away', distance: '22.1 km' },
-  { name: 'Treasure Mountain', time: '35 mins away', distance: '18.1 km' },
-  { name: 'El Patio Razon', time: '34 mins away', distance: '18.2 km' },
-  { name: 'San Ildefonso de Toledo Parish', time: '34 mins away', distance: '18.7 km' },
-  { name: 'Tara sa Gulod', time: '34 mins away', distance: '14.3 km' },
+export const tanayNearbyAttractions: NearbyAttraction[] = [
+  {
+    name: 'Pililia Wind Farm',
+    time: '12 mins away',
+    distance: '5.3 km',
+    image: '/images/attractions/pililla-wind-farm.jpg',
+    imageAlt: 'Wind turbines at Pililla Wind Farm in Rizal',
+  },
+  {
+    name: 'Regina Rica',
+    time: '12 mins away',
+    distance: '5.9 km',
+    image: '/images/attractions/regina-rica.jpg',
+    imageAlt: 'Regina Rica pilgrimage grounds in Tanay, Rizal',
+  },
+  {
+    name: 'Daranak Falls',
+    time: '27 mins away',
+    distance: '15 km',
+    image: '/images/attractions/daranak-falls.jpg',
+    imageAlt: 'Daranak Falls waterfall and swimming area in Tanay',
+  },
+  {
+    name: 'Calinawan Cave',
+    time: '31 mins away',
+    distance: '14.9 km',
+    image: '/images/attractions/calinawan-cave.jpg',
+    imageAlt: 'Limestone entrance of Calinawan Cave in Tanay',
+  },
+  {
+    name: 'Tara sa Gulod',
+    time: '34 mins away',
+    distance: '14.3 km',
+    image: '/images/attractions/tara-sa-gulod.jpg',
+    imageAlt: 'Ridge viewpoint and mountain scenery at Tara sa Gulod',
+  },
+  {
+    name: 'Pupot Cave and Spring',
+    time: '34 mins away',
+    distance: '15.4 km',
+    image: '/images/attractions/calinawan-cave.jpg',
+    imageAlt: 'Tanay cave limestone formations representing Pupot Cave and Spring',
+  },
+  {
+    name: 'El Patio Razon',
+    time: '34 mins away',
+    distance: '18.2 km',
+    image: '/images/attractions/el-patio-razon.jpg',
+    imageAlt: 'Kawa bath area with mountain views at El Patio Razon',
+  },
+  {
+    name: 'San Ildefonso de Toledo Parish',
+    time: '34 mins away',
+    distance: '18.7 km',
+    image: '/images/attractions/san-ildefonso-parish.jpg',
+    imageAlt: 'Stone facade of San Ildefonso de Toledo Parish in Tanay',
+  },
+  {
+    name: 'Masungi Georeserve',
+    time: '34 mins away',
+    distance: '22.1 km',
+    image: '/images/attractions/masungi-georeserve.jpg',
+    imageAlt: 'Limestone landscape and trail scenery at Masungi Georeserve',
+  },
+  {
+    name: 'Treasure Mountain',
+    time: '35 mins away',
+    distance: '18.1 km',
+    image: '/images/attractions/treasure-mountain.jpg',
+    imageAlt: 'Mountain viewpoint and sea of clouds at Treasure Mountain',
+  },
+  {
+    name: 'Paglitaw Natural Pool',
+    time: '39 mins away',
+    distance: '16.7 km',
+    image: '/images/attractions/paglitaw-natural-pool.jpg',
+    imageAlt: 'Turquoise natural pool surrounded by trees at Paglitaw Natural Pool',
+  },
+  {
+    name: 'Emprest Nature Park',
+    time: '45 mins away',
+    distance: '24.8 km',
+    image: '/images/attractions/masungi-georeserve.jpg',
+    imageAlt: 'Tanay mountain landscape representing Emprest Nature Park',
+  },
+  {
+    name: 'Batlag Falls',
+    time: '47 mins away',
+    distance: '25.2 km',
+    image: '/images/attractions/batlag-falls.jpg',
+    imageAlt: 'Batlag Falls waterfall in Tanay, Rizal',
+  },
+]
+
+export const amadeoNearbyAttractions: NearbyAttraction[] = [
+  {
+    name: 'Amadeo Coffee Farms',
+    time: '10 mins away',
+    distance: '4.8 km',
+    image: '/images/amadeo-campers/camper-1.png',
+    imageAlt: 'Coffee-country fields representing nearby Amadeo coffee farm visits',
+  },
+  {
+    name: 'Tagaytay Ridge',
+    time: '20 mins away',
+    distance: '11 km',
+    image: '/images/amadeo-campers/camper-2.png',
+    imageAlt: 'View toward the Tagaytay ridge and Taal area from the highlands',
+  },
+  {
+    name: 'Tagaytay Picnic Grove',
+    time: '26 mins away',
+    distance: '14 km',
+    image: '/images/amadeo-campers/camper-3.png',
+    imageAlt: 'Leisure and open-air outing scene representing Tagaytay Picnic Grove',
+  },
+  {
+    name: 'Sky Ranch Tagaytay',
+    time: '29 mins away',
+    distance: '16 km',
+    image: '/images/amadeo-campers/camper-3.png',
+    imageAlt: 'Roadside recreation scene representing the Sky Ranch Tagaytay area',
+  },
+  {
+    name: 'Puzzle Mansion',
+    time: '31 mins away',
+    distance: '17 km',
+    image: '/images/tanay-campers/camper-24.jpg',
+    imageAlt: 'Placeholder image for Puzzle Mansion until dedicated Amadeo-area attraction photos are added',
+  },
+  {
+    name: "People's Park in the Sky",
+    time: '35 mins away',
+    distance: '19 km',
+    image: '/images/amadeo-campers/camper-2.png',
+    imageAlt: 'Taal-facing ridge view representing People’s Park in the Sky',
+  },
 ]
 
 export const blogPosts: BlogPost[] = [

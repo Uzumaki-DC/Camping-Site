@@ -4,8 +4,9 @@ import { notFound } from 'next/navigation'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
 import { BookingWidget } from '@/components/booking-widget'
-import { locations, nearbyAttractions, tanayActivityGroups, tanayRateOptions } from '@/lib/data'
-import { CalendarCheck, Car, Coffee, Droplets, Flame, Lightbulb, MapPin, ShieldPlus, ShoppingBag, Tent, Wifi } from 'lucide-react'
+import { NearbyAttractionsGrid } from '@/components/nearby-attractions-grid'
+import { amadeoNearbyAttractions, locations, tanayNearbyAttractions, tanayActivityGroups, tanayRateOptions } from '@/lib/data'
+import { ArrowRight, CalendarCheck, Car, Coffee, Droplets, Flame, Lightbulb, MapPin, ShieldPlus, ShoppingBag, Tent, Wifi } from 'lucide-react'
 
 export async function generateStaticParams() {
   return locations.map((location) => ({
@@ -41,6 +42,82 @@ const amenityIconMap: Record<string, React.ComponentType<{ className?: string }>
   'Camp Store': ShoppingBag,
 }
 
+const tanayCampScenes = [
+  {
+    src: '/images/tanay-campers/camper-14.jpg',
+    alt: 'Sunset view over the Tanay camp with windmills in the distance',
+    title: 'Sunset over camp',
+    description: 'The hilltop setting opens to late-afternoon sky, windmill silhouettes, and wide orchard grounds.',
+    className: 'lg:col-span-7',
+  },
+  {
+    src: '/images/tanay-campers/camper-24.jpg',
+    alt: 'Welcome sign at Windmills Viewpoint Cafe',
+    title: 'Cafe and welcome point',
+    description: 'The camp cafe anchors arrivals with coffee, seating, and a relaxed base beside the grounds.',
+    className: 'lg:col-span-5',
+  },
+  {
+    src: '/images/tanay-campers/camper-10.jpg',
+    alt: 'Gravel path lined with mango trees inside the Tanay campsite',
+    title: 'Tree-lined camp paths',
+    description: 'The internal roads and walking paths make the orchard feel structured without losing the open-air setting.',
+    className: 'md:col-span-4',
+  },
+  {
+    src: '/images/tanay-campers/camper-8.jpg',
+    alt: 'Wide orchard lawn and mature mango trees at the Tanay campsite',
+    title: 'Seven hectares of orchard',
+    description: 'Large clearings under the mango canopy give groups room to spread out for tents, parking, and activities.',
+    className: 'md:col-span-4',
+  },
+  {
+    src: '/images/tanay-campers/camper-17.jpg',
+    alt: 'Night camping setup under the trees at Tanay Windmills Viewpoint',
+    title: 'Camp after dark',
+    description: 'Evening setups settle under the trees with a quieter, fire-lit atmosphere once the day crowd leaves.',
+    className: 'md:col-span-4',
+  },
+]
+
+const amadeoCampScenes = [
+  {
+    src: '/images/amadeo-campers/camper-2.png',
+    alt: 'View toward Taal Lake from the Amadeo area',
+    title: 'Highland outlooks',
+    description: 'The Amadeo side leans into open ridge views and cool-air scenery that links naturally to Tagaytay day trips.',
+    className: 'lg:col-span-7',
+  },
+  {
+    src: '/images/amadeo-campers/camper-1.png',
+    alt: 'Open pasture and rolling green field near the Amadeo area',
+    title: 'Open-field setting',
+    description: 'The current image set points to a broader, greener landscape with roomier clearings than the orchard density in Tanay.',
+    className: 'lg:col-span-5',
+  },
+  {
+    src: '/images/amadeo-campers/camper-3.png',
+    alt: 'Roadside leisure scene near the Amadeo area',
+    title: 'Around the ridge',
+    description: 'Nearby activity spots and roadside stops support a more casual coffee-country weekend rhythm.',
+    className: 'md:col-span-4',
+  },
+  {
+    src: '/images/tanay-campers/camper-8.jpg',
+    alt: 'Placeholder orchard lawn image used until more Amadeo camp photos are available',
+    title: 'Camp clearings',
+    description: 'Temporary placeholder imagery stands in for the larger lawn and tenting areas until the dedicated Amadeo photo set is expanded.',
+    className: 'md:col-span-4',
+  },
+  {
+    src: '/images/tanay-campers/camper-24.jpg',
+    alt: 'Placeholder cafe frontage image used until more Amadeo camp photos are available',
+    title: 'Coffee stop atmosphere',
+    description: 'This is a temporary stand-in for Amadeo arrival and cafe-style moments while the page waits for more on-site photography.',
+    className: 'md:col-span-4',
+  },
+]
+
 export default async function LocationPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const location = locations.find((loc) => loc.id === slug)
@@ -50,13 +127,21 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
   }
 
   const isTanay = location.id === 'tanay'
+  const isAmadeo = location.id === 'amadeo'
+  const nearbyAttractions = isTanay ? tanayNearbyAttractions : isAmadeo ? amadeoNearbyAttractions : []
+  const heroImage = isTanay
+    ? '/images/tanay-campers/camper-14.jpg'
+    : isAmadeo
+      ? '/images/amadeo-campers/camper-2.png'
+      : location.image
+  const campScenes = isTanay ? tanayCampScenes : isAmadeo ? amadeoCampScenes : []
 
   return (
     <main className="min-h-screen">
       <Header />
 
       <section className="relative h-[70vh] min-h-[540px]">
-        <Image src={location.image} alt={location.name} fill className="object-cover" priority />
+        <Image src={heroImage} alt={location.name} fill className="object-cover" priority />
         <div className="absolute inset-0 bg-gradient-to-t from-foreground/75 via-foreground/25 to-transparent" />
         <div className="absolute inset-x-0 top-32 px-4">
           <div className="max-w-7xl mx-auto text-primary-foreground">
@@ -90,6 +175,16 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
           </div>
 
           <aside className="bg-secondary/40 p-6">
+            {(isTanay || isAmadeo) && (
+              <div className="relative aspect-[4/3] overflow-hidden mb-6">
+                <Image
+                  src={isTanay ? '/images/tanay-campers/camper-24.jpg' : '/images/amadeo-campers/camper-1.png'}
+                  alt={isTanay ? 'Windmills Viewpoint Cafe welcome sign' : 'Open field view near the Amadeo camp area'}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            )}
             <h3 className="text-2xl font-serif mb-5">Camp Details</h3>
             <div className="space-y-5 text-sm">
               <div className="flex gap-3">
@@ -109,6 +204,63 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
           </aside>
         </div>
       </section>
+
+      {(isTanay || isAmadeo) && (
+        <section className="py-8 px-4">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
+              <div className="max-w-2xl">
+                <p className="text-xs uppercase tracking-wider text-muted-foreground mb-4">
+                  {isTanay ? 'Inside The Campgrounds' : 'Around The Amadeo Site'}
+                </p>
+                <h2 className="text-4xl md:text-5xl font-serif mb-5 text-balance">
+                  {isTanay ? 'Mango shade, windmill views, and camp nights on site.' : 'Open ridge views, coffee-country air, and a softer weekend pace.'}
+                </h2>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {isTanay
+                    ? 'These are the actual orchard lanes, windmill-facing clearings, cafe frontage, and evening camp setups guests move through on site.'
+                    : 'The current Amadeo page now carries the available local imagery first, with temporary supporting placeholders where the photo library is still thin.'}
+                </p>
+              </div>
+              <Link
+                href="/gallery"
+                className="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-primary hover:underline"
+              >
+                View full gallery
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+
+            <div className="grid gap-6 lg:grid-cols-12">
+              {campScenes.slice(0, 2).map((scene) => (
+                <figure key={scene.src} className={`${scene.className} overflow-hidden bg-secondary/30`}>
+                  <div className="relative aspect-[16/11]">
+                    <Image src={scene.src} alt={scene.alt} fill className="object-cover" />
+                  </div>
+                  <figcaption className="p-5 md:p-6">
+                    <h3 className="text-2xl font-serif">{scene.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{scene.description}</p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-12 mt-6">
+              {campScenes.slice(2).map((scene) => (
+                <figure key={scene.src} className={`${scene.className} overflow-hidden border border-border bg-background`}>
+                  <div className="relative aspect-[4/5] md:aspect-[4/3]">
+                    <Image src={scene.src} alt={scene.alt} fill className="object-cover" />
+                  </div>
+                  <figcaption className="p-5">
+                    <h3 className="font-serif text-2xl">{scene.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{scene.description}</p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {isTanay && (
         <section className="py-16 px-4 bg-primary text-primary-foreground">
@@ -196,19 +348,14 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
         </div>
       </section>
 
-      {isTanay && (
+      {(isTanay || isAmadeo) && (
         <section className="py-24 px-4">
           <div className="max-w-7xl mx-auto">
             <p className="text-xs uppercase tracking-wider text-muted-foreground mb-4">Nearby Attractions</p>
-            <h2 className="text-4xl md:text-5xl font-serif mb-10">Add these stops to your Tanay trip.</h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4">
-              {nearbyAttractions.map((attraction) => (
-                <div key={attraction.name} className="flex justify-between gap-4 border-b border-border pb-3">
-                  <span className="font-medium">{attraction.name}</span>
-                  <span className="text-sm text-muted-foreground whitespace-nowrap">{attraction.time}</span>
-                </div>
-              ))}
-            </div>
+            <h2 className="text-4xl md:text-5xl font-serif mb-10">
+              {isTanay ? 'Add these stops to your Tanay trip.' : 'Add these stops to your Amadeo weekend.'}
+            </h2>
+            <NearbyAttractionsGrid attractions={nearbyAttractions} />
           </div>
         </section>
       )}

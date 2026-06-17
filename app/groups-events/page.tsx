@@ -2,7 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
-import { nearbyAttractions, tanayActivityGroups } from '@/lib/data'
+import { NearbyAttractionsGrid } from '@/components/nearby-attractions-grid'
+import { tanayNearbyAttractions, tanayActivityGroups } from '@/lib/data'
 import { ArrowRight, Binoculars, Coffee, Flame, Mountain, Sparkles, Tent, Users } from 'lucide-react'
 
 const icons = [Tent, Flame, Users, Mountain, Binoculars, Coffee, Sparkles]
@@ -62,14 +63,7 @@ export default function ActivitiesPage() {
                 Pair your day tour or overnight stay with a short drive to wind farms, waterfalls, caves, nature pools, and mountain destinations.
               </p>
             </div>
-            <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4">
-              {nearbyAttractions.map((attraction) => (
-                <div key={attraction.name} className="flex justify-between gap-4 border-b border-border pb-3">
-                  <span className="font-medium">{attraction.name}</span>
-                  <span className="text-sm text-muted-foreground whitespace-nowrap">{attraction.time}</span>
-                </div>
-              ))}
-            </div>
+            <NearbyAttractionsGrid attractions={tanayNearbyAttractions} />
           </div>
         </div>
       </section>
