@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import { ChevronLeft, ChevronRight, X } from 'lucide-react'
-import { Location } from '@/lib/data'
+import { campMedia, Location } from '@/lib/data'
 import { cn } from '@/lib/utils'
 
 interface LocationGalleryProps {
@@ -14,24 +14,7 @@ export function LocationGallery({ location }: LocationGalleryProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [lightboxOpen, setLightboxOpen] = useState(false)
   
-  // Create gallery images from location data
-  const galleryImages =
-    location.id === 'tanay'
-      ? Array.from({ length: 12 }, (_, i) => ({
-          src: `/images/tanay-campers/camper-${i + 1}.jpg`,
-          alt: `Camper photo from Windmills Viewpoint Campgrounds in Tanay (${i + 1})`,
-        }))
-      : location.id === 'amadeo'
-        ? Array.from({ length: 3 }, (_, i) => ({
-            src: `/images/amadeo-campers/camper-${i + 1}.png`,
-            alt: `Camper photo from the Amadeo camping site in Cavite (${i + 1})`,
-          }))
-        : [
-            { src: location.image, alt: `${location.name} landscape` },
-            { src: '/images/airstream-interior.jpg', alt: 'Camp setup detail' },
-            { src: '/images/campfire.jpg', alt: 'Evening campfire' },
-            { src: '/images/dining.jpg', alt: 'Outdoor dining' },
-          ]
+  const galleryImages = campMedia[location.id]?.gallery.map(({ src, alt }) => ({ src, alt })) || [{ src: location.image, alt: `${location.name} landscape` }]
 
   const nextImage = () => {
     setCurrentIndex((prev) => (prev + 1) % galleryImages.length)

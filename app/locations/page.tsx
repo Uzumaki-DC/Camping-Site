@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
 import { BookingWidget } from '@/components/booking-widget'
-import { locations } from '@/lib/data'
+import { campMedia, locations } from '@/lib/data'
 import { ArrowRight, Clock, MapPin, Tent } from 'lucide-react'
 
 export default function LocationsPage() {
@@ -15,7 +15,7 @@ export default function LocationsPage() {
 
       <section className="pt-[120px] relative">
         <div className="relative h-[520px] bg-primary overflow-hidden">
-          <Image src="/images/hero-airstream.jpg" alt="Windmills Camp Grounds" fill className="object-cover opacity-70" priority />
+          <Image src={campMedia.tanay.heroImage} alt="Windmills Viewpoint Camps in Tanay" fill className="object-cover opacity-70" priority />
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-foreground/20 to-transparent" />
           <div className="absolute inset-x-0 top-20 px-4">
             <div className="max-w-7xl mx-auto text-primary-foreground">
@@ -38,7 +38,7 @@ export default function LocationsPage() {
       <section className="py-24 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12">
-            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-4">Windmills Camp Grounds</p>
+            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-4">Windmills Viewpoint Camps</p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif mb-6 max-w-4xl text-balance">
               Close enough to Metro Manila, far enough to feel like camp.
             </h2>

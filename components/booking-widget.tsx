@@ -427,7 +427,7 @@ export function BookingWidget({ variant = 'hero', className }: BookingWidgetProp
               </div>
               <DialogTitle className="text-xl mb-2">Reservation Request Ready</DialogTitle>
               <DialogDescription className="mb-6">
-                Contact Windmills Camp Grounds to confirm this estimate and send your 50% GCash downpayment.
+                Contact Windmills Viewpoint Camps to confirm this estimate and send your 50% GCash downpayment.
               </DialogDescription>
               <div className="bg-muted/50 rounded-sm p-4 mb-6 text-left text-sm">
                 <p className="font-medium mb-2">Send your details to:</p>

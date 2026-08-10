@@ -115,7 +115,7 @@ export function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <Link href="/" className="font-serif text-2xl">Windmills</Link>
             <p className="text-xs text-primary-foreground/50">
-              Windmills Camp Grounds - Two locations, one adventure - Made in the Philippines
+              Windmills Viewpoint Camps - Two locations, one adventure - Made in the Philippines
             </p>
           </div>
         </div>

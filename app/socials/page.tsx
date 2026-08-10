@@ -5,8 +5,8 @@ import { contactInfo } from "@/lib/data"
 import { Facebook, Instagram, Youtube } from "lucide-react"
 
 export const metadata = {
-  title: "Socials | Windmills Camp Grounds",
-  description: "Follow Windmills Camp Grounds for Tanay Windmills Viewpoint updates, camper reels, and trip inspiration.",
+  title: "Socials | Windmills Viewpoint Camps",
+  description: "Follow Windmills Viewpoint Camps for Tanay Windmills Viewpoint updates, camper reels, and trip inspiration.",
 }
 
 const socials = [

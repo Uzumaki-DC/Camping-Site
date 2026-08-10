@@ -3,8 +3,8 @@
 import { useState } from "react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { contactInfo, locations } from "@/lib/data"
-import { CalendarCheck, Mail, MapPin, MessageSquare, Phone, Send } from "lucide-react"
+import { campMaps, contactInfo, locations } from "@/lib/data"
+import { CalendarCheck, ExternalLink, Mail, MapPin, MessageSquare, Phone, Send } from "lucide-react"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -160,6 +160,9 @@ export default function ContactPage() {
                           <option value="moto-camping">Moto camping</option>
                           <option value="car-camping">Car camping</option>
                           <option value="group-event">Group / team building</option>
+                          <option value="outdoor-wedding">Outdoor wedding / celebration</option>
+                          <option value="private-event">Private event</option>
+                          <option value="photo-video-shoot">Photo / video shoot</option>
                         </select>
                       </div>
                       <div>
@@ -182,6 +185,41 @@ export default function ContactPage() {
                 )}
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-secondary/30 py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="max-w-2xl mb-10">
+            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-4">Find the farms</p>
+            <h2 className="font-serif text-4xl md:text-5xl">Directions to each camp</h2>
+          </div>
+          <div className="grid lg:grid-cols-2 gap-8">
+            {locations.map((location) => {
+              const map = campMaps[location.id]
+              return (
+                <article key={location.id} className="border border-border bg-background">
+                  <div className="aspect-[16/10]">
+                    <iframe
+                      title={`Map to ${location.name}`}
+                      src={`https://www.google.com/maps?q=${encodeURIComponent(map.query)}&output=embed`}
+                      className="h-full w-full border-0"
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    />
+                  </div>
+                  <div className="p-5">
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground">{location.shortName}</p>
+                    <h3 className="mt-2 font-serif text-2xl">{location.name}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground">{map.label}</p>
+                    <a href={map.directionsUrl} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline">
+                      Open in Google Maps <ExternalLink className="h-4 w-4" />
+                    </a>
+                  </div>
+                </article>
+              )
+            })}
           </div>
         </div>
       </section>

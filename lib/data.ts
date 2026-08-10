@@ -51,8 +51,9 @@ export interface NearbyAttraction {
   name: string
   time: string
   distance: string
-  image: string
-  imageAlt: string
+  image?: string
+  imageAlt?: string
+  mapUrl?: string
 }
 
 export interface BlogPost {
@@ -67,12 +68,22 @@ export interface BlogPost {
   slug: string
 }
 
-export interface Testimonial {
+export interface FacebookTestimonial {
   id: string
-  quote: string
-  author: string
-  location: string
-  rating: number
+  url: string
+  label: string
+}
+
+export interface CampMedia {
+  heroImage: string
+  heroAlt: string
+  gallery: Array<{ src: string; alt: string; title: string; description: string }>
+}
+
+export interface CampMap {
+  label: string
+  query: string
+  directionsUrl: string
 }
 
 export interface FAQ {
@@ -92,6 +103,49 @@ export const contactInfo = {
   gcashName: 'EDGAR F.',
 }
 
+export const campMaps: Record<string, CampMap> = {
+  tanay: {
+    label: 'Tanay Windmills Viewpoint Cafe, Pililla, Rizal',
+    query: 'Tanay Windmills Viewpoint Cafe, Pililla, Rizal',
+    directionsUrl: 'https://www.google.com/maps/search/?api=1&query=Tanay+Windmills+Viewpoint+Cafe%2C+Pililla%2C+Rizal',
+  },
+  amadeo: {
+    label: 'Pangil Farm, Barangay Pangil, Amadeo, Cavite',
+    query: 'Pangil Farm, Barangay Pangil, Amadeo, Cavite',
+    directionsUrl: 'https://www.google.com/maps/search/?api=1&query=Pangil+Farm%2C+Barangay+Pangil%2C+Amadeo%2C+Cavite',
+  },
+}
+
+export const campMedia: Record<string, CampMedia> = {
+  tanay: {
+    heroImage: '/images/tanay-campers/camper-14.jpg',
+    heroAlt: 'Sunset over Windmills Viewpoint Camps in Tanay',
+    gallery: [
+      { src: '/images/tanay-campers/camper-14.jpg', alt: 'Sunset view over the Tanay camp with windmills in the distance', title: 'Sunset over camp', description: 'Late-afternoon sky, windmill silhouettes, and wide orchard grounds.' },
+      { src: '/images/tanay-campers/camper-24.jpg', alt: 'Welcome sign at Windmills Viewpoint Cafe', title: 'Cafe and welcome point', description: 'Coffee, seating, and a relaxed arrival point beside the grounds.' },
+      { src: '/images/tanay-campers/camper-10.jpg', alt: 'Gravel path lined with mango trees inside the Tanay campsite', title: 'Tree-lined camp paths', description: 'Orchard lanes and walking paths through the camp.' },
+      { src: '/images/tanay-campers/camper-8.jpg', alt: 'Wide orchard lawn at the Tanay campsite', title: 'Seven hectares of orchard', description: 'Clearings under mango trees for tents, parking, and activities.' },
+      { src: '/images/tanay-campers/camper-17.jpg', alt: 'Night camping setup under the trees at Tanay', title: 'Camp after dark', description: 'Evening setups settle into a quieter fire-lit atmosphere.' },
+    ],
+  },
+  amadeo: {
+    heroImage: '/images/pangil-farm/pangil-05.png',
+    heroAlt: 'Garden lawn and mature trees at Pangil Farm in Amadeo',
+    gallery: [
+      { src: '/images/pangil-farm/pangil-01.png', alt: 'Open Pangil Farm field under a bright sky', title: 'Open farm fields', description: 'A real view across the Pangil Farm grounds.' },
+      { src: '/images/pangil-farm/pangil-02.png', alt: 'Banana grove at Pangil Farm', title: 'Banana grove', description: 'Green planting rows and open farm air.' },
+      { src: '/images/pangil-farm/pangil-03.png', alt: 'Garden lawn at Pangil Farm', title: 'Garden lawn', description: 'A shaded clearing within the farm.' },
+      { src: '/images/pangil-farm/pangil-04.png', alt: 'Landscaped lawn and mature trees at Pangil Farm', title: 'Under the trees', description: 'A quiet garden setting for relaxed farm stays.' },
+      { src: '/images/pangil-farm/pangil-05.png', alt: 'Garden seating area at Pangil Farm', title: 'Garden gathering area', description: 'Outdoor seating within the farm grounds.' },
+      { src: '/images/pangil-farm/pangil-06.png', alt: 'Mango trees and garden space at Pangil Farm', title: 'Mango shade', description: 'A mature tree canopy around the camp area.' },
+      { src: '/images/pangil-farm/pangil-07.png', alt: 'Pangil Farm roadside grove', title: 'Farm approach', description: 'A glimpse of the farm landscape from the approach road.' },
+      { src: '/images/pangil-farm/pangil-08.png', alt: 'Farm building surrounded by planting at Pangil Farm', title: 'Farmhouse setting', description: 'The farm buildings sit within a lush planted landscape.' },
+      { src: '/images/pangil-farm/pangil-09.png', alt: 'Pangil Farm grounds', title: 'Pangil grounds', description: 'Another on-site view from the supplied photo set.' },
+      { src: '/images/pangil-farm/pangil-10.png', alt: 'Pangil Farm landscape', title: 'Farm landscape', description: 'A real Pangil Farm view from the supplied photo set.' },
+    ],
+  },
+}
+
 export const locations: Location[] = [
   {
     id: 'tanay',
@@ -101,7 +155,7 @@ export const locations: Location[] = [
     tagline: 'The highland camp beside the windmills',
     description:
       'A serene hilltop campsite in Sitio Masalat, Sampaloc-Pililla, Tanay with cool wind, foggy mornings, mango trees, Laguna de Bay views, and easy access to the Pililla wind turbines.',
-    image: '/images/hero-airstream.jpg',
+    image: campMedia.tanay.heroImage,
     coordinates: { lat: 14.5749, lng: 121.3746 },
     region: 'east',
     address: 'Sitio Masalat, Brgy. Sampaloc, Tanay, Rizal',
@@ -136,7 +190,6 @@ export const locations: Location[] = [
       'Batlag Falls',
       'Calinawan Cave',
       'Masungi Georeserve',
-      'Treasure Mountain',
       'Tara sa Gulod',
     ],
     accommodationTypes: [
@@ -207,7 +260,7 @@ export const locations: Location[] = [
     tagline: 'Coffee country camp with crisp highland air',
     description:
       'A coffee-farm camp in the rolling hills of Amadeo, the Philippines barako capital, with cool nights, Taal views, firepit gatherings, and farm-style outdoor stays.',
-    image: '/images/sonoma.jpg',
+    image: campMedia.amadeo.heroImage,
     coordinates: { lat: 14.1706, lng: 120.9239 },
     region: 'south',
     address: 'Conchu Road, Barangay Pangil, Amadeo, Cavite',
@@ -233,11 +286,10 @@ export const locations: Location[] = [
       'Good fit for barkada trips, family weekends, and office outings',
     ],
     nearbyAttractions: [
-      'Tagaytay Ridge',
-      'Taal Volcano Viewpoints',
-      'Coffee Farms',
+      'Balite Falls',
+      'Mayang Falls',
       'People\'s Park in the Sky',
-      'Tagaytay Picnic Grove',
+      'Palsahingin Falls',
     ],
     accommodationTypes: [
       {
@@ -246,7 +298,7 @@ export const locations: Location[] = [
         description: 'BYOT hillside site with firepit, picnic table, parking, and barako coffee.',
         capacity: 6,
         price: 750,
-        image: '/images/sonoma.jpg',
+        image: campMedia.amadeo.gallery[0].src,
         rateUnit: 'per pax/night',
         locationId: 'amadeo',
         features: ['6 x 6 m plot', 'Firepit & firewood', 'Picnic table', 'Parking', 'Barako coffee'],
@@ -257,7 +309,7 @@ export const locations: Location[] = [
         description: 'BYOT site for groups who want a coffee farm setting.',
         capacity: 10,
         price: 750,
-        image: '/images/dining.jpg',
+        image: campMedia.amadeo.gallery[4].src,
         rateUnit: 'per pax/night',
         locationId: 'amadeo',
         features: ['8 x 8 m plot', 'Firepit & firewood', 'Picnic table', 'Parking', 'Barako coffee'],
@@ -268,7 +320,7 @@ export const locations: Location[] = [
         description: 'Large BYOT site for company outings and big family groups.',
         capacity: 30,
         price: 650,
-        image: '/images/family-reunion.jpg',
+        image: campMedia.amadeo.gallery[2].src,
         rateUnit: 'per pax/night',
         locationId: 'amadeo',
         features: ['15 x 15 m plot', '2 firepits', '4 picnic tables', '4 parking slots', 'Barako coffee'],
@@ -414,7 +466,35 @@ export const tanayActivityGroups: ActivityGroup[] = [
       'Cafe beside the orchard',
     ],
   },
+  {
+    title: 'Events & Shoots',
+    items: ['Outdoor weddings and celebrations', 'Private events and corporate gatherings', 'Photo shoots', 'Video shoots'],
+  },
 ]
+
+export const amadeoActivityGroups: ActivityGroup[] = [
+  {
+    title: 'Farm & Garden Time',
+    items: ['Farm walks', 'Garden picnics', 'Coffee-country mornings', 'Relaxed outdoor stays'],
+  },
+  {
+    title: 'Camp Evenings',
+    items: ['Firepit kwentuhan', 'Camp cooking', 'Stargazing', 'Cool-night gatherings'],
+  },
+  {
+    title: 'Group Trips',
+    items: ['Barkada stays', 'Family weekends', 'Office outings', 'Team gatherings'],
+  },
+  {
+    title: 'Events & Shoots',
+    items: ['Outdoor weddings and celebrations', 'Private events and corporate gatherings', 'Photo shoots', 'Video shoots'],
+  },
+]
+
+export const campActivityGroups: Record<string, ActivityGroup[]> = {
+  tanay: tanayActivityGroups,
+  amadeo: amadeoActivityGroups,
+}
 
 export const tanayNearbyAttractions: NearbyAttraction[] = [
   {
@@ -481,13 +561,6 @@ export const tanayNearbyAttractions: NearbyAttraction[] = [
     imageAlt: 'Limestone landscape and trail scenery at Masungi Georeserve',
   },
   {
-    name: 'Treasure Mountain',
-    time: '35 mins away',
-    distance: '18.1 km',
-    image: '/images/attractions/treasure-mountain.jpg',
-    imageAlt: 'Mountain viewpoint and sea of clouds at Treasure Mountain',
-  },
-  {
     name: 'Paglitaw Natural Pool',
     time: '39 mins away',
     distance: '16.7 km',
@@ -512,46 +585,64 @@ export const tanayNearbyAttractions: NearbyAttraction[] = [
 
 export const amadeoNearbyAttractions: NearbyAttraction[] = [
   {
-    name: 'Amadeo Coffee Farms',
-    time: '10 mins away',
-    distance: '4.8 km',
-    image: '/images/amadeo-campers/camper-1.png',
-    imageAlt: 'Coffee-country fields representing nearby Amadeo coffee farm visits',
+    name: 'Balite Falls',
+    time: '12 mins away',
+    distance: '7.4 km',
+    mapUrl: 'https://maps.app.goo.gl/nmbgDmDiVCQma1Qd6',
   },
   {
-    name: 'Tagaytay Ridge',
-    time: '20 mins away',
-    distance: '11 km',
-    image: '/images/amadeo-campers/camper-2.png',
-    imageAlt: 'View toward the Tagaytay ridge and Taal area from the highlands',
-  },
-  {
-    name: 'Tagaytay Picnic Grove',
-    time: '26 mins away',
-    distance: '14 km',
-    image: '/images/amadeo-campers/camper-3.png',
-    imageAlt: 'Leisure and open-air outing scene representing Tagaytay Picnic Grove',
-  },
-  {
-    name: 'Sky Ranch Tagaytay',
-    time: '29 mins away',
-    distance: '16 km',
-    image: '/images/amadeo-campers/camper-3.png',
-    imageAlt: 'Roadside recreation scene representing the Sky Ranch Tagaytay area',
-  },
-  {
-    name: 'Puzzle Mansion',
-    time: '31 mins away',
-    distance: '17 km',
-    image: '/images/tanay-campers/camper-24.jpg',
-    imageAlt: 'Placeholder image for Puzzle Mansion until dedicated Amadeo-area attraction photos are added',
+    name: 'Mayang Falls',
+    time: '6 mins away',
+    distance: '4.5 km',
+    mapUrl: 'https://maps.app.goo.gl/srD5zAe8t1oZXbbaA',
   },
   {
     name: "People's Park in the Sky",
-    time: '35 mins away',
-    distance: '19 km',
-    image: '/images/amadeo-campers/camper-2.png',
-    imageAlt: 'Taal-facing ridge view representing People’s Park in the Sky',
+    time: '41 mins away',
+    distance: '21.3 km',
+    mapUrl: 'https://maps.app.goo.gl/rKsLkH33P5ZMzzem7',
+  },
+  {
+    name: 'Palsahingin Falls',
+    time: '7 mins away',
+    distance: '3.4 km',
+    mapUrl: 'https://maps.app.goo.gl/DqQXA2gjZCXxcuHN7',
+  },
+  {
+    name: 'Tagaytay Picnic Grove',
+    time: '33 mins away',
+    distance: '17.5 km',
+    mapUrl: 'https://maps.app.goo.gl/DtkaBo7ny64vnPeo6',
+  },
+  {
+    name: 'Mahogany Falls',
+    time: '2 mins away',
+    distance: '1.7 km',
+    mapUrl: 'https://maps.app.goo.gl/DGmMkr9By4LJ5wdJ7',
+  },
+  {
+    name: 'Pulunan Bridge',
+    time: '15 mins away',
+    distance: '9.4 km',
+    mapUrl: 'https://maps.app.goo.gl/wd4iEAKcLPPbVq496',
+  },
+  {
+    name: 'Paradizoo Theme Park',
+    time: '22 mins away',
+    distance: '13.5 km',
+    mapUrl: 'https://maps.app.goo.gl/3Z8L5WixRDHj7F7o8',
+  },
+  {
+    name: "Yoki's Farm",
+    time: '26 mins away',
+    distance: '15.7 km',
+    mapUrl: 'https://maps.app.goo.gl/FbqJ4E7P6AEBk58c8',
+  },
+  {
+    name: 'Puzzle Mansion',
+    time: 'See directions',
+    distance: 'Nearby Amadeo',
+    mapUrl: 'https://maps.app.goo.gl/NdE5KV765yQekqWq9',
   },
 ]
 
@@ -591,30 +682,21 @@ export const blogPosts: BlogPost[] = [
   },
 ]
 
-export const testimonials: Testimonial[] = [
+export const facebookTestimonials: FacebookTestimonial[] = [
   {
-    id: '1',
-    quote:
-      'First time ko mag-camp and sobrang sulit. Our barkada went to the Starfield Site in Tanay and woke up to full Sierra Madre views at sunrise.',
-    author: 'Marco Santos',
-    location: 'Tanay Camp',
-    rating: 5,
+    id: 'campers-video',
+    url: 'https://www.facebook.com/share/v/1Ggk5YiN5K/',
+    label: 'Watch a camper story on Facebook',
   },
   {
-    id: '2',
-    quote:
-      'Brought our barkada to the Coffee Grove Site in Amadeo. Super clean grounds, the staff were so nice, and the views were gorgeous.',
-    author: 'Pia Reyes',
-    location: 'Amadeo Camp',
-    rating: 5,
+    id: 'campers-reel',
+    url: 'https://www.facebook.com/share/r/1D3XntzByZ/',
+    label: 'View a camper reel on Facebook',
   },
   {
-    id: '3',
-    quote:
-      'We used the Meadow Group Site for our office outing. All 30 of us had a blast with tons of space and a big firepit.',
-    author: 'Jun dela Cruz',
-    location: 'Amadeo Camp',
-    rating: 5,
+    id: 'campers-post',
+    url: 'https://www.facebook.com/share/p/1BenFfwkBN/',
+    label: 'Read a camper post on Facebook',
   },
 ]
 
@@ -623,7 +705,7 @@ export const faqs: FAQ[] = [
     id: '1',
     question: 'Do we need to bring our own tent?',
     answer:
-      'Yes. Windmills Camp Grounds is primarily BYOT, or Bring Your Own Tent. Campers bring tents, sleeping gear, and cooking essentials. Tanay also lists tent pitching fees for day tour and overnight stays.',
+      'Yes. Windmills Viewpoint Camps is primarily BYOT, or Bring Your Own Tent. Campers bring tents, sleeping gear, and cooking essentials. Tanay also lists tent pitching fees for day tour and overnight stays.',
     category: 'Camping',
   },
   {
