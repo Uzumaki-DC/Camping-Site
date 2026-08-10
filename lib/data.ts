@@ -68,12 +68,12 @@ export interface BlogPost {
   slug: string
 }
 
-export interface TestimonialImage {
+export interface Testimonial {
   id: string
-  src: string
-  alt: string
-  width: number
-  height: number
+  author: string
+  date?: string
+  quote: string
+  rating?: number
 }
 
 export interface CampMedia {
@@ -714,41 +714,41 @@ export const blogPosts: BlogPost[] = [
   },
 ]
 
-export const testimonialImages: TestimonialImage[] = [
+export const testimonials: Testimonial[] = [
   {
     id: 'wigo-wanders',
-    src: '/images/testimonials/wigo-wanders.png',
-    alt: 'Five-star Tanay Windmills Viewpoint review from Wigo Wanders describing the accessible location, maintained pitching area, washrooms, security, and relaxing camping experience.',
-    width: 646,
-    height: 507,
+    author: 'Wigo Wanders',
+    date: 'June 18, 2025',
+    quote:
+      "Very accessible ang road, and the camping ground is well maintained. Madaming mga puno kaya hindi ganun kainit ng tanghali. Security and staff: 10/10. It's yay! Babalikan namin tong campsite na 'to - very chill lang ng stay namin.",
+    rating: 5,
   },
   {
     id: 'sky-averie',
-    src: '/images/testimonials/sky-averie.png',
-    alt: 'Camper review from Sky Averie thanking the camp for the pleasant accommodation and saying they will visit again.',
-    width: 672,
-    height: 134,
+    author: 'Sky Averie',
+    quote:
+      "Thanks for the very pleasant and good accommodation. Nag-enjoy po kami, we'll visit soon again. God bless. Keep it up.",
   },
   {
     id: 'elaine-perete',
-    src: '/images/testimonials/elaine-perete.png',
-    alt: 'Camper review from Elaine Perete describing peace, rustling leaves, a steady breeze, cool air, and the gentle sounds of nature at Tanay Windmills Viewpoint.',
-    width: 649,
-    height: 130,
+    author: 'Elaine Perete',
+    date: 'May 5, 2025',
+    quote:
+      'Camping at Tanay Windmills Viewpoint always brings me peace - the rustling leaves, the steady breeze, the cool air, and the gentle sounds of nature remind me how simple and beautiful the world can be.',
   },
   {
     id: 'camp-vibes-ph',
-    src: '/images/testimonials/camp-vibes-ph.png',
-    alt: 'Camper review from Camp Vibes PH describing a peaceful two-night stay and refreshing weather under the mango trees.',
-    width: 656,
-    height: 127,
+    author: 'Camp Vibes PH',
+    date: 'March 2, 2025',
+    quote:
+      'We enjoyed our two-night stay at Tanay Windmills Viewpoint. It was peaceful, and the weather was refreshing as we camped under the mango trees.',
   },
   {
     id: 'ronan-israel-ramos',
-    src: '/images/testimonials/ronan-israel-ramos.png',
-    alt: 'Camper review from Ronan Israel Ramos praising the tranquil atmosphere, friendly staff, spacious camp area, and easy access.',
-    width: 664,
-    height: 127,
+    author: 'Ronan Israel Ramos',
+    date: 'January 26, 2025',
+    quote:
+      'A tranquil experience. They have very friendly and accommodating staff. The whole camp area is quite big and could put up a lot of campers at the same time. It is also easy to get to. We will definitely come back.',
   },
 ]
 

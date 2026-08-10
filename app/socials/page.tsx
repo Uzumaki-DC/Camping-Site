@@ -2,7 +2,7 @@ import Link from "next/link"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { contactInfo } from "@/lib/data"
-import { Facebook, Instagram, Youtube } from "lucide-react"
+import { Facebook, Instagram } from "lucide-react"
 
 export const metadata = {
   title: "Socials | Windmills Viewpoint Camps",
@@ -12,7 +12,6 @@ export const metadata = {
 const socials = [
   { name: "Facebook", href: contactInfo.facebook, icon: Facebook, detail: "Tanay Windmills' Viewpoint Cafe" },
   { name: "Instagram", href: contactInfo.instagram, icon: Instagram, detail: "@tanaywindmillsviewpoint" },
-  { name: "YouTube features", href: "https://youtube.com", icon: Youtube, detail: "Camper and influencer visits" },
 ]
 
 export default function SocialsPage() {
@@ -28,7 +27,7 @@ export default function SocialsPage() {
         </div>
       </section>
       <section className="py-16 px-4">
-        <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-6">
+        <div className="max-w-3xl mx-auto grid md:grid-cols-2 gap-6">
           {socials.map((social) => (
             <a key={social.name} href={social.href} target="_blank" rel="noopener noreferrer" className="border border-border p-6 hover:bg-muted/40 transition-colors">
               <social.icon className="h-7 w-7 text-primary mb-5" />

@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Facebook, Instagram, Mail, MapPin, Phone, Send, Youtube } from "lucide-react"
+import { Facebook, Instagram, Mail, MapPin, Phone, Send } from "lucide-react"
 import { contactInfo, locations } from "@/lib/data"
 
 const footerLinks = {
@@ -22,7 +22,6 @@ const footerLinks = {
 const socialLinks = [
   { name: "Instagram", href: contactInfo.instagram, icon: Instagram },
   { name: "Facebook", href: contactInfo.facebook, icon: Facebook },
-  { name: "YouTube", href: "https://youtube.com", icon: Youtube },
 ]
 
 export function Footer() {
