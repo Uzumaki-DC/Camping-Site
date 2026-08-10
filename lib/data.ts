@@ -68,10 +68,12 @@ export interface BlogPost {
   slug: string
 }
 
-export interface FacebookTestimonial {
+export interface TestimonialImage {
   id: string
-  url: string
-  label: string
+  src: string
+  alt: string
+  width: number
+  height: number
 }
 
 export interface CampMedia {
@@ -105,14 +107,14 @@ export const contactInfo = {
 
 export const campMaps: Record<string, CampMap> = {
   tanay: {
-    label: 'Tanay Windmills Viewpoint Cafe, Pililla, Rizal',
-    query: 'Tanay Windmills Viewpoint Cafe, Pililla, Rizal',
-    directionsUrl: 'https://www.google.com/maps/search/?api=1&query=Tanay+Windmills+Viewpoint+Cafe%2C+Pililla%2C+Rizal',
+    label: 'Tanay Windmills Viewpoint Cafe',
+    query: 'Tanay Windmills Viewpoint Cafe',
+    directionsUrl: 'https://maps.app.goo.gl/QmTnGU7nLqdaSnrM8',
   },
   amadeo: {
-    label: 'Pangil Farm, Barangay Pangil, Amadeo, Cavite',
-    query: 'Pangil Farm, Barangay Pangil, Amadeo, Cavite',
-    directionsUrl: 'https://www.google.com/maps/search/?api=1&query=Pangil+Farm%2C+Barangay+Pangil%2C+Amadeo%2C+Cavite',
+    label: 'EMF Farm (Pangil), Pangil, Amadeo, Cavite',
+    query: 'EMF Farm (Pangil), Pangil, Amadeo, Cavite',
+    directionsUrl: 'https://maps.app.goo.gl/WqjmjsqaKGeLnsBHA',
   },
 }
 
@@ -416,6 +418,24 @@ export const tanayRateOptions: RateOption[] = [
   },
 ]
 
+const cafeOfferings: ActivityGroup = {
+  title: 'Cafe Offerings',
+  items: [
+    'All-day Filipino breakfast: Tapsilog',
+    'Philippine coffee beans: Barako, Benguet, Arabica, and Robusta',
+  ],
+}
+
+const seasonalActivities: ActivityGroup = {
+  title: 'Seasonal Activities',
+  items: ['Passion fruit picking', 'Mango picking'],
+}
+
+const otherGroupActivities: ActivityGroup = {
+  title: 'Other Group Activities',
+  items: ['Weddings', 'Photo shoots', 'Corporate offsite', 'Private events', 'Video shoots'],
+}
+
 export const tanayActivityGroups: ActivityGroup[] = [
   {
     title: 'Nature & Relaxation',
@@ -429,10 +449,9 @@ export const tanayActivityGroups: ActivityGroup[] = [
       'Outdoor movie night',
     ],
   },
-  {
-    title: 'Farm & Orchard Experiences',
-    items: ['Mango picking (seasonal)', 'Farm tour and orchard walk', 'Fruit harvesting activities'],
-  },
+  cafeOfferings,
+  seasonalActivities,
+  otherGroupActivities,
   {
     title: 'Team Building & Group Activities',
     items: [
@@ -456,19 +475,13 @@ export const tanayActivityGroups: ActivityGroup[] = [
     title: 'Food, Wellness & Add-ons',
     items: [
       'Outdoor grilling / BBQ night',
-      'Coffee and breakfast by the orchard',
       'Picnic baskets',
       'Environmental awareness talks',
       'Bird watching',
       'Yoga under the trees',
       'Meditation sessions',
       'Photography area / Instagram spots',
-      'Cafe beside the orchard',
     ],
-  },
-  {
-    title: 'Events & Shoots',
-    items: ['Outdoor weddings and celebrations', 'Private events and corporate gatherings', 'Photo shoots', 'Video shoots'],
   },
 ]
 
@@ -477,6 +490,9 @@ export const amadeoActivityGroups: ActivityGroup[] = [
     title: 'Farm & Garden Time',
     items: ['Farm walks', 'Garden picnics', 'Coffee-country mornings', 'Relaxed outdoor stays'],
   },
+  cafeOfferings,
+  seasonalActivities,
+  otherGroupActivities,
   {
     title: 'Camp Evenings',
     items: ['Firepit kwentuhan', 'Camp cooking', 'Stargazing', 'Cool-night gatherings'],
@@ -484,10 +500,6 @@ export const amadeoActivityGroups: ActivityGroup[] = [
   {
     title: 'Group Trips',
     items: ['Barkada stays', 'Family weekends', 'Office outings', 'Team gatherings'],
-  },
-  {
-    title: 'Events & Shoots',
-    items: ['Outdoor weddings and celebrations', 'Private events and corporate gatherings', 'Photo shoots', 'Video shoots'],
   },
 ]
 
@@ -588,60 +600,80 @@ export const amadeoNearbyAttractions: NearbyAttraction[] = [
     name: 'Balite Falls',
     time: '12 mins away',
     distance: '7.4 km',
+    image: '/images/attractions/amadeo/balite-falls.jpg',
+    imageAlt: 'Wide cascades flowing into the natural pool at Balite Falls in Amadeo',
     mapUrl: 'https://maps.app.goo.gl/nmbgDmDiVCQma1Qd6',
   },
   {
     name: 'Mayang Falls',
     time: '6 mins away',
     distance: '4.5 km',
+    image: '/images/attractions/amadeo/mayang-falls.jpg',
+    imageAlt: 'Rocky cascade and tropical foliage at Mayang Falls in Trece Martires, Cavite',
     mapUrl: 'https://maps.app.goo.gl/srD5zAe8t1oZXbbaA',
   },
   {
     name: "People's Park in the Sky",
     time: '41 mins away',
     distance: '21.3 km',
+    image: '/images/attractions/amadeo/peoples-park-in-the-sky.jpg',
+    imageAlt: "Hilltop terraces and panoramic views at People's Park in the Sky in Tagaytay",
     mapUrl: 'https://maps.app.goo.gl/rKsLkH33P5ZMzzem7',
   },
   {
     name: 'Palsahingin Falls',
     time: '7 mins away',
     distance: '3.4 km',
+    image: '/images/attractions/amadeo/palsahingin-falls.jpg',
+    imageAlt: 'Forest waterfall and turquoise pool at Palsahingin Falls in Indang, Cavite',
     mapUrl: 'https://maps.app.goo.gl/DqQXA2gjZCXxcuHN7',
   },
   {
     name: 'Tagaytay Picnic Grove',
     time: '33 mins away',
     distance: '17.5 km',
+    image: '/images/attractions/amadeo/tagaytay-picnic-grove.jpg',
+    imageAlt: 'Picnic shelters across the grassy hillside at Tagaytay Picnic Grove',
     mapUrl: 'https://maps.app.goo.gl/DtkaBo7ny64vnPeo6',
   },
   {
     name: 'Mahogany Falls',
     time: '2 mins away',
     distance: '1.7 km',
+    image: '/images/attractions/amadeo/mahogany-falls.jpg',
+    imageAlt: 'Small forest cascades and natural pool at Mahogany Falls in Trece Martires, Cavite',
     mapUrl: 'https://maps.app.goo.gl/DGmMkr9By4LJ5wdJ7',
   },
   {
     name: 'Pulunan Bridge',
     time: '15 mins away',
     distance: '9.4 km',
+    image: '/images/attractions/amadeo/pulunan-bridge.jpg',
+    imageAlt: 'Pulunan steel bridge above the riverside recreation area in Trece Martires, Cavite',
     mapUrl: 'https://maps.app.goo.gl/wd4iEAKcLPPbVq496',
   },
   {
     name: 'Paradizoo Theme Park',
     time: '22 mins away',
     distance: '13.5 km',
+    image: '/images/attractions/amadeo/paradizoo-theme-park.jpg',
+    imageAlt: 'Paradizoo entrance sign surrounded by tropical greenery in Mendez, Cavite',
     mapUrl: 'https://maps.app.goo.gl/3Z8L5WixRDHj7F7o8',
   },
   {
     name: "Yoki's Farm",
     time: '26 mins away',
     distance: '15.7 km',
+    image: '/images/attractions/amadeo/yokis-farm.webp',
+    imageAlt: "Yoki's Farm entrance sign and garden wall in Mendez, Cavite",
     mapUrl: 'https://maps.app.goo.gl/FbqJ4E7P6AEBk58c8',
   },
   {
     name: 'Puzzle Mansion',
     time: 'See directions',
     distance: 'Nearby Amadeo',
+    image: '/images/attractions/amadeo/puzzle-mansion.jpg',
+    imageAlt: 'Puzzle Mansion museum entrance and puzzle-shaped sign near Tagaytay',
     mapUrl: 'https://maps.app.goo.gl/NdE5KV765yQekqWq9',
   },
 ]
@@ -682,21 +714,41 @@ export const blogPosts: BlogPost[] = [
   },
 ]
 
-export const facebookTestimonials: FacebookTestimonial[] = [
+export const testimonialImages: TestimonialImage[] = [
   {
-    id: 'campers-video',
-    url: 'https://www.facebook.com/share/v/1Ggk5YiN5K/',
-    label: 'Watch a camper story on Facebook',
+    id: 'wigo-wanders',
+    src: '/images/testimonials/wigo-wanders.png',
+    alt: 'Five-star Tanay Windmills Viewpoint review from Wigo Wanders describing the accessible location, maintained pitching area, washrooms, security, and relaxing camping experience.',
+    width: 646,
+    height: 507,
   },
   {
-    id: 'campers-reel',
-    url: 'https://www.facebook.com/share/r/1D3XntzByZ/',
-    label: 'View a camper reel on Facebook',
+    id: 'sky-averie',
+    src: '/images/testimonials/sky-averie.png',
+    alt: 'Camper review from Sky Averie thanking the camp for the pleasant accommodation and saying they will visit again.',
+    width: 672,
+    height: 134,
   },
   {
-    id: 'campers-post',
-    url: 'https://www.facebook.com/share/p/1BenFfwkBN/',
-    label: 'Read a camper post on Facebook',
+    id: 'elaine-perete',
+    src: '/images/testimonials/elaine-perete.png',
+    alt: 'Camper review from Elaine Perete describing peace, rustling leaves, a steady breeze, cool air, and the gentle sounds of nature at Tanay Windmills Viewpoint.',
+    width: 649,
+    height: 130,
+  },
+  {
+    id: 'camp-vibes-ph',
+    src: '/images/testimonials/camp-vibes-ph.png',
+    alt: 'Camper review from Camp Vibes PH describing a peaceful two-night stay and refreshing weather under the mango trees.',
+    width: 656,
+    height: 127,
+  },
+  {
+    id: 'ronan-israel-ramos',
+    src: '/images/testimonials/ronan-israel-ramos.png',
+    alt: 'Camper review from Ronan Israel Ramos praising the tranquil atmosphere, friendly staff, spacious camp area, and easy access.',
+    width: 664,
+    height: 127,
   },
 ]
 

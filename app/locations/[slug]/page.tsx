@@ -245,8 +245,8 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
             </h2>
             <p className="text-muted-foreground leading-relaxed">
               {isTanay
-                ? 'The spreadsheet lists nature relaxation, team building, recreational games, family activities, food experiences, wellness, and optional add-ons.'
-                : 'The website copy positions Amadeo as a coffee-farm camp for barkada trips, family weekends, and corporate outings.'}
+                ? 'Plan a nature break with cafe favorites, seasonal fruit picking, group activities, games, and optional add-ons.'
+                : 'Enjoy coffee-country mornings, seasonal fruit picking, cafe favorites, and group occasions at Pangil Farm.'}
             </p>
           </div>
           <div className="grid sm:grid-cols-2 gap-6">

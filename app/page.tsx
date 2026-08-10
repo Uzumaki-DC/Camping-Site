@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
 import { BookingWidget } from '@/components/booking-widget'
-import { FacebookTestimonials } from '@/components/facebook-testimonials'
+import { TestimonialGallery } from '@/components/testimonial-gallery'
 import { NearbyAttractionsGrid } from '@/components/nearby-attractions-grid'
 import { VideoHero } from '@/components/video-hero'
 import { contactInfo, locations, tanayNearbyAttractions, tanayActivityGroups, tanayRateOptions } from '@/lib/data'
@@ -208,9 +208,9 @@ export default function Home() {
       <section className="py-24 px-4 bg-secondary/30">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-center text-sm uppercase tracking-wider text-muted-foreground mb-12">
-            Camper stories from Facebook
+            What our campers say
           </h2>
-          <FacebookTestimonials />
+          <TestimonialGallery />
         </div>
       </section>
 

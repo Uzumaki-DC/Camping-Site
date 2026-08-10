@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
 import { NearbyAttractionsGrid } from '@/components/nearby-attractions-grid'
-import { campMedia, tanayNearbyAttractions, tanayActivityGroups } from '@/lib/data'
+import { amadeoActivityGroups, campMedia, tanayNearbyAttractions, tanayActivityGroups } from '@/lib/data'
 import { ArrowRight, Binoculars, Coffee, Flame, Mountain, Sparkles, Tent, Users } from 'lucide-react'
 
 const icons = [Tent, Flame, Users, Mountain, Binoculars, Coffee, Sparkles]
@@ -24,34 +24,39 @@ export default function ActivitiesPage() {
         </div>
       </section>
 
-      <section className="py-20 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground mb-4">At Tanay Windmills Viewpoint</p>
-            <h2 className="text-3xl md:text-5xl font-serif text-foreground mb-4">What to do at camp</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Choose a quiet camp-out, a full barkada itinerary, or a structured school/corporate activity day.
-            </p>
-          </div>
+      {[
+        { label: 'At Tanay Windmills Viewpoint', groups: tanayActivityGroups },
+        { label: 'At Pangil Farm, Amadeo', groups: amadeoActivityGroups },
+      ].map((farm, farmIndex) => (
+        <section key={farm.label} className={`py-20 px-4 ${farmIndex === 1 ? 'bg-secondary/30' : ''}`}>
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground mb-4">{farm.label}</p>
+              <h2 className="text-3xl md:text-5xl font-serif text-foreground mb-4">What to do at camp</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Choose a quiet camp-out, seasonal farm experiences, cafe favorites, or a group occasion.
+              </p>
+            </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {tanayActivityGroups.map((group, index) => {
-              const Icon = icons[index] || Tent
-              return (
-                <div key={group.title} className="bg-card border border-border p-6">
-                  <Icon className="h-6 w-6 text-primary mb-5" />
-                  <h3 className="text-xl font-serif text-foreground mb-4">{group.title}</h3>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    {group.items.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              )
-            })}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {farm.groups.map((group, index) => {
+                const Icon = icons[index % icons.length] || Tent
+                return (
+                  <div key={group.title} className="bg-card border border-border p-6">
+                    <Icon className="h-6 w-6 text-primary mb-5" />
+                    <h3 className="text-xl font-serif text-foreground mb-4">{group.title}</h3>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      {group.items.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )
+              })}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ))}
 
       <section className="py-20 px-4 bg-secondary/30">
         <div className="max-w-7xl mx-auto">
