@@ -3,8 +3,9 @@ import Link from 'next/link'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
 import { BookingWidget } from '@/components/booking-widget'
-import { TestimonialsCarousel } from '@/components/testimonials-carousel'
+import { FacebookTestimonials } from '@/components/facebook-testimonials'
 import { NearbyAttractionsGrid } from '@/components/nearby-attractions-grid'
+import { VideoHero } from '@/components/video-hero'
 import { contactInfo, locations, tanayNearbyAttractions, tanayActivityGroups, tanayRateOptions } from '@/lib/data'
 import { ArrowRight, Binoculars, CalendarCheck, Coffee, Flame, MapPin, Mountain, Tent, Users } from 'lucide-react'
 
@@ -32,16 +33,20 @@ export default function Home() {
     <main className="min-h-screen">
       <Header transparent />
 
-      <section className="relative h-screen min-h-[720px]">
-        <Image src="/images/hero-airstream.jpg" alt="Tanay Windmills Viewpoint campsite" fill className="object-cover" priority />
+      <section className="relative h-[100svh] min-h-[680px] overflow-hidden">
+        <VideoHero
+          src="/media/windmills-drone-hero.mp4"
+          poster="/images/tanay-campers/camper-14.jpg"
+          alt="Drone view over Windmills Viewpoint Camps in Tanay"
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-foreground/50 via-foreground/20 to-foreground/70" />
-        <div className="absolute inset-x-0 top-32 px-4">
+        <div className="absolute inset-x-0 top-28 px-4 md:top-32">
           <div className="max-w-7xl mx-auto text-primary-foreground">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif leading-tight max-w-4xl text-balance">
               Close enough. Far enough.
             </h1>
             <p className="mt-6 max-w-2xl text-lg md:text-xl text-primary-foreground/85 leading-relaxed">
-              Bring-your-own-tent camping, day tours, moto camping, firepit nights, and orchard views at Tanay Windmills Viewpoint.
+              Bring-your-own-tent camping, day tours, moto camping, firepit nights, and orchard views at Windmills Viewpoint Camps.
             </p>
             <div className="mt-8 flex flex-wrap gap-3 text-sm">
               <span className="inline-flex items-center gap-2 border border-primary-foreground/40 px-4 py-2">
@@ -59,7 +64,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="absolute inset-x-0 bottom-0 px-4 pb-8">
+        <div className="absolute inset-x-0 bottom-0 px-4 pb-4 md:pb-8">
           <div className="max-w-7xl mx-auto">
             <BookingWidget variant="hero" className="rounded-sm overflow-hidden" />
           </div>
@@ -203,9 +208,9 @@ export default function Home() {
       <section className="py-24 px-4 bg-secondary/30">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-center text-sm uppercase tracking-wider text-muted-foreground mb-12">
-            Camper stories
+            Camper stories from Facebook
           </h2>
-          <TestimonialsCarousel />
+          <FacebookTestimonials />
         </div>
       </section>
 

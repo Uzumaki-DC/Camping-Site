@@ -40,7 +40,7 @@ export default async function JournalPostPage({ params }: { params: Promise<{ sl
           <div className="max-w-3xl mx-auto prose prose-neutral">
             <p>{post.content}</p>
             <p>
-              For current rates, visit details, and reservation steps, use the estimator on the home page or contact Windmills Camp Grounds directly.
+              For current rates, visit details, and reservation steps, use the estimator on the home page or contact Windmills Viewpoint Camps directly.
             </p>
           </div>
         </section>

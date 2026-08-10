@@ -41,7 +41,7 @@ export default function FAQPage() {
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="font-serif text-4xl md:text-5xl text-primary-foreground mb-4">FAQ & Packing Guide</h1>
           <p className="text-primary-foreground/80 text-lg">
-            Rates, BYOT camping rules, reservation terms, and what to bring to Windmills Camp Grounds.
+            Rates, BYOT camping rules, reservation terms, and what to bring to Windmills Viewpoint Camps.
           </p>
         </div>
       </section>

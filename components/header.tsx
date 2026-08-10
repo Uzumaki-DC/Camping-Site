@@ -60,7 +60,7 @@ export function Header({ transparent = false }: HeaderProps) {
                 'text-base sm:text-lg tracking-[0.15em] font-bold uppercase leading-tight',
                 transparent ? 'text-primary-foreground' : 'text-foreground'
               )}>
-                Windmills Viewpoint Campgrounds
+                Windmills Viewpoint Camps
               </span>
             </Link>
           </div>

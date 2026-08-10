@@ -25,7 +25,7 @@ export default function GiftCardsPage() {
       <section className="py-16 px-4">
         <div className="max-w-5xl mx-auto grid lg:grid-cols-[0.9fr_1.1fr] gap-10 items-start">
           <div className="bg-secondary/40 p-8">
-            <p className="text-sm uppercase tracking-wider text-muted-foreground mb-3">Windmills Camp Grounds</p>
+            <p className="text-sm uppercase tracking-wider text-muted-foreground mb-3">Windmills Viewpoint Camps</p>
             <h2 className="text-3xl font-serif mb-4">Request a custom camp voucher</h2>
             <p className="text-muted-foreground">
               Voucher handling is manual for now. Contact the reservations team with your preferred amount, recipient name, and message.

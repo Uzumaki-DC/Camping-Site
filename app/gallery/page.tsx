@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { campMedia } from "@/lib/data"
 
 const tanayCamperImages = Array.from({ length: 24 }, (_, i) => ({
   src: `/images/tanay-campers/camper-${i + 1}.jpg`,
@@ -10,11 +11,7 @@ const tanayCamperImages = Array.from({ length: 24 }, (_, i) => ({
   category: "Tanay Windmills",
 }))
 
-const amadeoCamperImages = Array.from({ length: 3 }, (_, i) => ({
-  src: `/images/amadeo-campers/camper-${i + 1}.png`,
-  alt: `Camper photo from the Amadeo camping site in Cavite (${i + 1})`,
-  category: "Amadeo",
-}))
+const amadeoCamperImages = campMedia.amadeo.gallery.map((image) => ({ ...image, category: 'Pangil Farm, Amadeo' }))
 
 const galleryImages = [
   ...tanayCamperImages,
@@ -29,7 +26,7 @@ export default function GalleryPage() {
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-serif mb-4">Gallery</h1>
           <p className="text-primary-foreground/80 text-lg">
-            Campgrounds, firepit nights, group trips, cafe moments, and nature views from the Windmills experience.
+            Real campgrounds, group trips, cafe moments, and nature views from Windmills Viewpoint Camps.
           </p>
         </div>
       </section>

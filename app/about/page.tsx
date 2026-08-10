@@ -2,12 +2,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
-import { locations } from '@/lib/data'
+import { campMedia, locations } from '@/lib/data'
 import { ArrowRight } from 'lucide-react'
 
 export const metadata = {
-  title: 'About | Windmills Camp Grounds',
-  description: 'Learn about Windmills Camp Grounds, a BYOT camping destination in Tanay, Rizal and Amadeo, Cavite.',
+  title: 'About | Windmills Viewpoint Camps',
+  description: 'Learn about Windmills Viewpoint Camps, a BYOT camping destination in Tanay, Rizal and Amadeo, Cavite.',
 }
 
 export default function AboutPage() {
@@ -16,13 +16,13 @@ export default function AboutPage() {
       <Header />
 
       <section className="relative h-[60vh] min-h-[420px]">
-        <Image src="/images/campfire.jpg" alt="Evening at Windmills Camp Grounds" fill className="object-cover" priority />
+        <Image src="/images/tanay-campers/camper-16.jpg" alt="Campers enjoying the mango orchard at Windmills Viewpoint Camps" fill className="object-cover" priority />
         <div className="absolute inset-0 bg-gradient-to-t from-foreground/75 via-foreground/30 to-transparent" />
       </section>
 
       <section className="py-24 px-4">
         <div className="max-w-7xl mx-auto">
-          <p className="text-xs uppercase tracking-wider text-muted-foreground mb-4">About Windmills</p>
+          <p className="text-xs uppercase tracking-wider text-muted-foreground mb-4">About Windmills Viewpoint Camps</p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif mb-12 max-w-4xl leading-tight">
             The Philippine camping ground.
             <br />
@@ -32,7 +32,7 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-2 gap-16">
             <div>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Windmills Camp Grounds is the go-to camping destination for the modern Filipino adventurer: close enough to Metro Manila, yet worlds away the moment you arrive. It is built for barkada getaways, family reunion weekends, school trips, and corporate office outings.
+                Windmills Viewpoint Camps is a real Philippine camping destination for the modern Filipino adventurer: close enough to Metro Manila, yet worlds away the moment you arrive. It is built for barkada getaways, family reunion weekends, school trips, and corporate office outings.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mt-5">
                 We provide the grounds, scenery, fire areas, parking, and facilities. Campers bring the tent, the crew, and the good vibes.
@@ -67,6 +67,22 @@ export default function AboutPage() {
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="py-24 px-4">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-6">
+          {(['tanay', 'amadeo'] as const).map((campId) => (
+            <figure key={campId} className="overflow-hidden border border-border">
+              <div className="relative aspect-[4/3]">
+                <Image src={campMedia[campId].gallery[0].src} alt={campMedia[campId].gallery[0].alt} fill className="object-cover" />
+              </div>
+              <figcaption className="p-5">
+                <p className="text-xs uppercase tracking-wider text-muted-foreground">Real camp photo</p>
+                <p className="mt-2 font-serif text-2xl">{campId === 'tanay' ? 'Tanay orchard grounds' : 'Pangil Farm, Amadeo'}</p>
+              </figcaption>
+            </figure>
+          ))}
         </div>
       </section>
 

@@ -17,11 +17,11 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Windmills Camp Grounds | Tanay Windmills Viewpoint',
+  title: 'Windmills Viewpoint Camps | Tanay Windmills Viewpoint',
   description: 'Bring-your-own-tent camping, day tours, moto camping, car camping, bonfire nights, and orchard views at Tanay Windmills Viewpoint.',
-  keywords: ['Tanay camping', 'Windmills Camp Grounds', 'Tanay Windmills Viewpoint', 'BYOT camping', 'moto camping', 'Rizal campsite'],
+  keywords: ['Tanay camping', 'Windmills Viewpoint Camps', 'Tanay Windmills Viewpoint', 'BYOT camping', 'moto camping', 'Rizal campsite'],
   openGraph: {
-    title: 'Windmills Camp Grounds | Tanay Windmills Viewpoint',
+    title: 'Windmills Viewpoint Camps | Tanay Windmills Viewpoint',
     description: 'Close enough to Metro Manila, far enough to feel like a real camp escape.',
     type: 'website',
   },
