@@ -9,12 +9,14 @@ const footerLinks = {
     { name: "Camps", href: "/locations" },
     { name: "Activities", href: "/groups-events" },
     { name: "Gallery", href: "/gallery" },
+    { name: "What's New", href: "/whats-new" },
     { name: "FAQ", href: "/faq" },
   ],
   plan: [
     { name: "Reserve", href: "/contact" },
     { name: "Packing Guide", href: "/faq#packing" },
     { name: "Rates", href: "/" },
+    { name: "Camp Merch", href: "/camp-merch" },
     { name: "Contact", href: "/contact" },
   ],
 }

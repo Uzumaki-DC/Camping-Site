@@ -18,6 +18,8 @@ const navigation = [
   },
   { name: 'Activities', href: '/groups-events' },
   { name: 'Gallery', href: '/gallery' },
+  { name: "What's New", href: '/whats-new' },
+  { name: 'Camp Merch', href: '/camp-merch' },
   {
     name: 'About',
     href: '/about',
@@ -66,7 +68,7 @@ export function Header({ transparent = false }: HeaderProps) {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex lg:items-center lg:gap-x-8">
+          <div className="hidden xl:flex xl:items-center xl:gap-x-5 2xl:gap-x-7">
             {navigation.map((item) => (
               <div
                 key={item.name}
@@ -107,7 +109,7 @@ export function Header({ transparent = false }: HeaderProps) {
           </div>
 
           {/* Book Now Button */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden xl:flex items-center gap-4">
             <Link
               href="/contact"
               className="bg-primary text-primary-foreground px-6 py-2 text-sm font-medium uppercase tracking-wider hover:bg-primary/90 transition-colors"
@@ -117,7 +119,7 @@ export function Header({ transparent = false }: HeaderProps) {
           </div>
 
           {/* Mobile menu button */}
-          <div className="flex lg:hidden">
+          <div className="flex xl:hidden">
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -139,8 +141,8 @@ export function Header({ transparent = false }: HeaderProps) {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 top-[88px] bg-background z-50">
-          <div className="p-6 space-y-4">
+        <div className="xl:hidden fixed inset-x-0 bottom-0 top-[100px] bg-background z-50 overflow-y-auto">
+          <div className="p-6 pb-12 space-y-3">
             {navigation.map((item) => (
               <div key={item.name}>
                 <Link

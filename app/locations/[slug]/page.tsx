@@ -4,9 +4,10 @@ import { notFound } from 'next/navigation'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
 import { BookingWidget } from '@/components/booking-widget'
+import { LocationHeroCarousel } from '@/components/location-hero-carousel'
 import { NearbyAttractionsGrid } from '@/components/nearby-attractions-grid'
 import { amadeoNearbyAttractions, campActivityGroups, campMedia, locations, tanayNearbyAttractions, tanayRateOptions } from '@/lib/data'
-import { ArrowRight, CalendarCheck, Car, Coffee, Droplets, Flame, Lightbulb, MapPin, ShieldPlus, ShoppingBag, Tent, Wifi } from 'lucide-react'
+import { ArrowRight, CalendarCheck, Car, Coffee, Droplets, Flame, Lightbulb, MapPin, Tent, Wifi } from 'lucide-react'
 
 export async function generateStaticParams() {
   return locations.map((location) => ({
@@ -38,8 +39,6 @@ const amenityIconMap: Record<string, React.ComponentType<{ className?: string }>
   'Parking Area': Car,
   'Ground Lighting': Lightbulb,
   'Internet Access at Cafe': Wifi,
-  'First Aid Station': ShieldPlus,
-  'Camp Store': ShoppingBag,
 }
 
 export default async function LocationPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -61,22 +60,34 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
     <main className="min-h-screen">
       <Header />
 
-      <section className="relative h-[70vh] min-h-[540px]">
-        <Image src={heroImage} alt={location.name} fill className="object-cover" priority />
-        <div className="absolute inset-0 bg-gradient-to-t from-foreground/75 via-foreground/25 to-transparent" />
-        <div className="absolute inset-x-0 top-32 px-4">
-          <div className="max-w-7xl mx-auto text-primary-foreground">
-            <p className="text-xs uppercase tracking-wider mb-4 text-primary-foreground/75">{location.shortName}</p>
-            <h1 className="text-4xl md:text-6xl font-serif max-w-4xl leading-tight text-balance">{location.name}</h1>
-            <p className="mt-5 max-w-2xl text-lg text-primary-foreground/85">{location.tagline}</p>
+      {isAmadeo ? (
+        <LocationHeroCarousel
+          images={[
+            { src: heroImage, alt: media?.heroAlt || location.name },
+            ...campScenes.map((scene) => ({ src: scene.src, alt: scene.alt })),
+          ]}
+          locationName={location.name}
+          shortName={location.shortName}
+          tagline={location.tagline}
+        />
+      ) : (
+        <section className="relative h-[70vh] min-h-[540px]">
+          <Image src={heroImage} alt={location.name} fill className="object-cover" priority />
+          <div className="absolute inset-0 bg-gradient-to-t from-foreground/75 via-foreground/25 to-transparent" />
+          <div className="absolute inset-x-0 top-32 px-4">
+            <div className="max-w-7xl mx-auto text-primary-foreground">
+              <p className="text-xs uppercase tracking-wider mb-4 text-primary-foreground/75">{location.shortName}</p>
+              <h1 className="text-4xl md:text-6xl font-serif max-w-4xl leading-tight text-balance">{location.name}</h1>
+              <p className="mt-5 max-w-2xl text-lg text-primary-foreground/85">{location.tagline}</p>
+            </div>
           </div>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 px-4 pb-4">
-          <div className="max-w-6xl mx-auto">
-            <BookingWidget variant="hero" className="rounded-sm overflow-hidden shadow-lg" />
+          <div className="absolute bottom-0 left-0 right-0 px-4 pb-4">
+            <div className="max-w-6xl mx-auto">
+              <BookingWidget variant="hero" className="rounded-sm overflow-hidden shadow-lg" />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-[1fr_0.8fr] gap-14">

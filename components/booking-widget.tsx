@@ -17,6 +17,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 interface BookingWidgetProps {
   variant?: 'hero' | 'sticky' | 'page'
   className?: string
+  initialLocationId?: string
 }
 
 type StayType = 'dayTour' | 'overnight'
@@ -36,8 +37,10 @@ function getRate(id: string) {
   return rate
 }
 
-export function BookingWidget({ variant = 'hero', className }: BookingWidgetProps) {
-  const [selectedLocation, setSelectedLocation] = useState(locations[0])
+export function BookingWidget({ variant = 'hero', className, initialLocationId }: BookingWidgetProps) {
+  const [selectedLocation, setSelectedLocation] = useState(
+    () => locations.find((location) => location.id === initialLocationId) || locations[0],
+  )
   const [stayType, setStayType] = useState<StayType>('overnight')
   const [dateRange, setDateRange] = useState<DateRange | undefined>({
     from: new Date(),

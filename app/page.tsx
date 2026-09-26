@@ -177,7 +177,12 @@ export default function Home() {
       <section className="py-24 px-4">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
           <div className="relative aspect-[4/3] overflow-hidden">
-            <Image src="/images/campfire.jpg" alt="Bonfire night at camp" fill className="object-cover" />
+            <Image
+              src="/images/feedback/filipino-family-camping.jpg"
+              alt="Filipino family sharing a meal at a campsite"
+              fill
+              className="object-cover"
+            />
           </div>
           <div>
             <p className="text-xs uppercase tracking-wider text-muted-foreground mb-4">Reservations</p>

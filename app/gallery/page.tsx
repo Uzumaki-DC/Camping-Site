@@ -1,22 +1,12 @@
-"use client"
+import { Header } from '@/components/header'
+import { Footer } from '@/components/footer'
+import { GalleryLightbox } from '@/components/gallery-lightbox'
+import { galleryImages } from '@/lib/data'
 
-import Image from "next/image"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
-import { campMedia } from "@/lib/data"
-
-const tanayCamperImages = Array.from({ length: 24 }, (_, i) => ({
-  src: `/images/tanay-campers/camper-${i + 1}.jpg`,
-  alt: `Camper photo from Windmills Viewpoint Campgrounds in Tanay (${i + 1})`,
-  category: "Tanay Windmills",
-}))
-
-const amadeoCamperImages = campMedia.amadeo.gallery.map((image) => ({ ...image, category: 'Pangil Farm, Amadeo' }))
-
-const galleryImages = [
-  ...tanayCamperImages,
-  ...amadeoCamperImages,
-]
+export const metadata = {
+  title: 'Gallery | Windmills Viewpoint Camps',
+  description: 'Real camp, cafe, orchard, and farm photos from Windmills Viewpoint Camps in Tanay and Amadeo.',
+}
 
 export default function GalleryPage() {
   return (
@@ -24,6 +14,7 @@ export default function GalleryPage() {
       <Header />
       <section className="pt-32 pb-16 px-4 bg-primary text-primary-foreground">
         <div className="max-w-4xl mx-auto text-center">
+          <p className="mb-4 text-xs uppercase tracking-[0.3em] text-primary-foreground/70">From The Grounds</p>
           <h1 className="text-4xl md:text-5xl font-serif mb-4">Gallery</h1>
           <p className="text-primary-foreground/80 text-lg">
             Real campgrounds, group trips, cafe moments, and nature views from Windmills Viewpoint Camps.
@@ -31,18 +22,8 @@ export default function GalleryPage() {
         </div>
       </section>
       <section className="py-16 px-4">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {galleryImages.map((image) => (
-            <figure key={image.alt} className="group">
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <Image src={image.src} alt={image.alt} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
-              </div>
-              <figcaption className="mt-3">
-                <p className="text-xs uppercase tracking-wider text-muted-foreground">{image.category}</p>
-                <p className="font-medium">{image.alt}</p>
-              </figcaption>
-            </figure>
-          ))}
+        <div className="max-w-7xl mx-auto">
+          <GalleryLightbox images={galleryImages} />
         </div>
       </section>
       <Footer />

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
 import { NearbyAttractionsGrid } from '@/components/nearby-attractions-grid'
-import { amadeoActivityGroups, campMedia, tanayNearbyAttractions, tanayActivityGroups } from '@/lib/data'
+import { activityFeatures, amadeoActivityGroups, campMedia, tanayNearbyAttractions, tanayActivityGroups } from '@/lib/data'
 import { ArrowRight, Binoculars, Coffee, Flame, Mountain, Sparkles, Tent, Users } from 'lucide-react'
 
 const icons = [Tent, Flame, Users, Mountain, Binoculars, Coffee, Sparkles]
@@ -21,6 +21,36 @@ export default function ActivitiesPage() {
           <p className="text-lg md:text-xl text-primary-foreground/90 max-w-2xl mx-auto">
             Nature relaxation, barkada games, team building, family activities, outdoor weddings, events, and photo or video shoots.
           </p>
+        </div>
+      </section>
+
+      <section className="py-20 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-3xl mb-12">
+            <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground mb-4">At Camp</p>
+            <h2 className="text-3xl md:text-5xl font-serif text-foreground mb-5">Make the day your own.</h2>
+            <p className="text-muted-foreground text-lg">
+              Choose a slow farm morning, a shared meal, a seasonal harvest, or a group event beneath the trees.
+            </p>
+          </div>
+
+          <div className="grid gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
+            {activityFeatures.map((feature) => (
+              <article key={feature.id}>
+                <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
+                  <Image
+                    src={feature.image}
+                    alt={feature.imageAlt}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="mt-5 text-2xl font-serif text-foreground">{feature.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{feature.description}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
