@@ -53,19 +53,39 @@ export interface NearbyAttraction {
   distance: string
   image?: string
   imageAlt?: string
-  mapUrl?: string
+  link?: {
+    href: string
+    label: string
+  }
 }
 
-export interface BlogPost {
+export interface Announcement {
   id: string
   title: string
   excerpt: string
   content: string
   image: string
-  author: string
-  date: string
+  imageAlt: string
+  dateLabel: string
   category: string
   slug: string
+  status: 'active' | 'archived'
+}
+
+export interface ActivityFeature {
+  id: string
+  title: string
+  description: string
+  image: string
+  imageAlt: string
+}
+
+export interface GalleryImage {
+  id: string
+  src: string
+  alt: string
+  title: string
+  location: 'tanay' | 'amadeo'
 }
 
 export interface Testimonial {
@@ -127,26 +147,85 @@ export const campMedia: Record<string, CampMedia> = {
       { src: '/images/tanay-campers/camper-24.jpg', alt: 'Welcome sign at Windmills Viewpoint Cafe', title: 'Cafe and welcome point', description: 'Coffee, seating, and a relaxed arrival point beside the grounds.' },
       { src: '/images/tanay-campers/camper-10.jpg', alt: 'Gravel path lined with mango trees inside the Tanay campsite', title: 'Tree-lined camp paths', description: 'Orchard lanes and walking paths through the camp.' },
       { src: '/images/tanay-campers/camper-8.jpg', alt: 'Wide orchard lawn at the Tanay campsite', title: 'Seven hectares of orchard', description: 'Clearings under mango trees for tents, parking, and activities.' },
-      { src: '/images/tanay-campers/camper-17.jpg', alt: 'Night camping setup under the trees at Tanay', title: 'Camp after dark', description: 'Evening setups settle into a quieter fire-lit atmosphere.' },
+      { src: '/images/feedback/tanay-night-camp-tents.jpg', alt: 'Illuminated family tents under the trees at Tanay', title: 'Camp after dark', description: 'Evening setups settle into a quieter fire-lit atmosphere.' },
     ],
   },
   amadeo: {
-    heroImage: '/images/pangil-farm/pangil-05.png',
-    heroAlt: 'Garden lawn and mature trees at Pangil Farm in Amadeo',
+    heroImage: '/images/pangil-farm-2026/amadeo-hero-field-139.jpg',
+    heroAlt: 'Open green field and mature trees at Pangil Farm in Amadeo',
     gallery: [
-      { src: '/images/pangil-farm/pangil-01.png', alt: 'Open Pangil Farm field under a bright sky', title: 'Open farm fields', description: 'A real view across the Pangil Farm grounds.' },
-      { src: '/images/pangil-farm/pangil-02.png', alt: 'Banana grove at Pangil Farm', title: 'Banana grove', description: 'Green planting rows and open farm air.' },
-      { src: '/images/pangil-farm/pangil-03.png', alt: 'Garden lawn at Pangil Farm', title: 'Garden lawn', description: 'A shaded clearing within the farm.' },
-      { src: '/images/pangil-farm/pangil-04.png', alt: 'Landscaped lawn and mature trees at Pangil Farm', title: 'Under the trees', description: 'A quiet garden setting for relaxed farm stays.' },
-      { src: '/images/pangil-farm/pangil-05.png', alt: 'Garden seating area at Pangil Farm', title: 'Garden gathering area', description: 'Outdoor seating within the farm grounds.' },
-      { src: '/images/pangil-farm/pangil-06.png', alt: 'Mango trees and garden space at Pangil Farm', title: 'Mango shade', description: 'A mature tree canopy around the camp area.' },
-      { src: '/images/pangil-farm/pangil-07.png', alt: 'Pangil Farm roadside grove', title: 'Farm approach', description: 'A glimpse of the farm landscape from the approach road.' },
-      { src: '/images/pangil-farm/pangil-08.png', alt: 'Farm building surrounded by planting at Pangil Farm', title: 'Farmhouse setting', description: 'The farm buildings sit within a lush planted landscape.' },
-      { src: '/images/pangil-farm/pangil-09.png', alt: 'Pangil Farm grounds', title: 'Pangil grounds', description: 'Another on-site view from the supplied photo set.' },
-      { src: '/images/pangil-farm/pangil-10.png', alt: 'Pangil Farm landscape', title: 'Farm landscape', description: 'A real Pangil Farm view from the supplied photo set.' },
+      { src: '/images/pangil-farm-2026/amadeo-open-field-135.jpg', alt: 'Open field with grazing animals at Pangil Farm', title: 'Open fields', description: 'Wide green grounds with space for future outdoor stays.' },
+      { src: '/images/pangil-farm-2026/amadeo-sports-field-137.jpg', alt: 'Grass sports field with football goals at Pangil Farm', title: 'Sports field', description: 'An open lawn prepared for games and group activities.' },
+      { src: '/images/pangil-farm-2026/amadeo-kubo-garden-141.jpg', alt: 'Garden path beside a wooden kubo at Pangil Farm', title: 'Kubo garden', description: 'Shaded rest areas sit among mature tropical planting.' },
+      { src: '/images/pangil-farm-2026/amadeo-kubos-148.jpg', alt: 'Wooden kubos under mature mango trees at Pangil Farm', title: 'Kubos and rest areas', description: 'Outdoor tables and huts create relaxed gathering spaces.' },
+      { src: '/images/pangil-farm-2026/amadeo-flower-garden-145.jpg', alt: 'Flower garden and lawn at Pangil Farm', title: 'Flower garden', description: 'Colorful planting borders the farm lawns and pathways.' },
+      { src: '/images/pangil-farm-2026/amadeo-fern-garden-146.jpg', alt: 'Fern garden and fenced lawn at Pangil Farm', title: 'Fern garden', description: 'A landscaped path leads through garden and grazing areas.' },
+      { src: '/images/pangil-farm-2026/amadeo-coconut-field-158.jpg', alt: 'Coconut trees across a green field at Pangil Farm', title: 'Coconut field', description: 'Rows of coconut trees open onto the wider farm landscape.' },
+      { src: '/images/pangil-farm-2026/amadeo-grazing-field-161.jpg', alt: 'Cattle grazing among coconut trees at Pangil Farm', title: 'Animal grazing areas', description: 'Working farm views remain part of the Pangil landscape.' },
     ],
   },
 }
+
+const tanayGuestGallery: GalleryImage[] = Array.from({ length: 24 }, (_, index) => ({
+  id: `tanay-guest-${index + 1}`,
+  src: `/images/tanay-campers/camper-${index + 1}.jpg`,
+  alt: `Guest campsite photo from Windmills Viewpoint Camps in Tanay, image ${index + 1}`,
+  title: 'Guest photo, Tanay',
+  location: 'tanay',
+}))
+
+export const galleryImages: GalleryImage[] = [
+  ...tanayGuestGallery,
+  {
+    id: 'tanay-benches',
+    src: '/images/feedback/gallery-benches-tanay.jpg',
+    alt: 'White wagon-wheel benches beneath mango trees at the Tanay campground',
+    title: 'Benches, Tanay',
+    location: 'tanay',
+  },
+  {
+    id: 'passion-fruit-vines',
+    src: '/images/feedback/gallery-passion-fruit-vines.jpg',
+    alt: 'Passion fruit vines hanging across a farm trellis',
+    title: 'Passion fruit vines, Amadeo & Tanay farms',
+    location: 'tanay',
+  },
+  {
+    id: 'tanay-mango-orchard',
+    src: '/images/feedback/gallery-mango-orchard.jpg',
+    alt: 'Mature mango orchard across the Tanay campground',
+    title: 'Mango trees, Tanay',
+    location: 'tanay',
+  },
+  {
+    id: 'tanay-mango-tree',
+    src: '/images/feedback/gallery-mango-tree.jpg',
+    alt: 'Large mango tree beside a campground path in Tanay',
+    title: 'Mango trees, Tanay',
+    location: 'tanay',
+  },
+  {
+    id: 'tanay-viewpoint-cafe',
+    src: '/images/feedback/gallery-viewpoint-cafe.jpg',
+    alt: 'Open-air Windmills Viewpoint Cafe building in Tanay',
+    title: 'Windmills Viewpoint Cafe, Tanay',
+    location: 'tanay',
+  },
+  {
+    id: 'tanay-welcome-sign',
+    src: '/images/feedback/gallery-welcome-sign.jpg',
+    alt: 'Wooden welcome sign for Windmills Viewpoint Cafe',
+    title: 'Welcome sign, Tanay',
+    location: 'tanay',
+  },
+  ...campMedia.amadeo.gallery.map((photo, index) => ({
+    id: `amadeo-${index + 1}`,
+    src: photo.src,
+    alt: photo.alt,
+    title: `${photo.title}, Amadeo`,
+    location: 'amadeo' as const,
+  })),
+]
 
 export const locations: Location[] = [
   {
@@ -176,7 +255,6 @@ export const locations: Location[] = [
       'Ground Lighting',
       'Pet-Friendly Grounds',
       'Internet Access at Cafe',
-      'First Aid Station',
     ],
     highlights: [
       'Seven hectares of orchard farmland with mango trees and carabao grass',
@@ -191,6 +269,9 @@ export const locations: Location[] = [
       'Daranak Falls',
       'Batlag Falls',
       'Calinawan Cave',
+      'Pupot Cave and Spring',
+      'Mount Kulis',
+      'Tanay Parola',
       'Masungi Georeserve',
       'Tara sa Gulod',
     ],
@@ -276,10 +357,8 @@ export const locations: Location[] = [
       'Firepit Areas',
       'Parking Area',
       'Ground Lighting',
-      'Camp Store',
       'Coffee & Snack Bar',
       'Waste Management',
-      'First Aid Station',
     ],
     highlights: [
       'Barako coffee country setting',
@@ -436,6 +515,72 @@ const otherGroupActivities: ActivityGroup = {
   items: ['Weddings', 'Photo shoots', 'Corporate offsite', 'Private events', 'Video shoots'],
 }
 
+export const activityFeatures: ActivityFeature[] = [
+  {
+    id: 'stargazing-photo-safari',
+    title: 'Stargazing & Photo Safari',
+    description: 'Slow evenings, darker skies, and quiet viewpoints for nature photography.',
+    image: '/images/feedback/activity-stargazing.jpg',
+    imageAlt: 'Night sky above a dark tree line at the camp',
+  },
+  {
+    id: 'filipino-breakfast',
+    title: 'All-day Filipino Breakfast',
+    description: 'Start or finish the day with a filling tapsilog meal at the cafe.',
+    image: '/images/feedback/activity-filipino-breakfast.jpg',
+    imageAlt: 'Plate of tapsilog with beef tapa, garlic rice, and a fried egg',
+  },
+  {
+    id: 'philippine-coffee',
+    title: 'Philippine Coffee',
+    description: 'Enjoy Barako, Benguet, Arabica, and Robusta beans in the highland air.',
+    image: '/images/feedback/activity-barako-coffee.jpg',
+    imageAlt: 'Barako coffee beans, press, and coffee cup at the viewpoint cafe',
+  },
+  {
+    id: 'passion-fruit-picking',
+    title: 'Passion Fruit Picking',
+    description: 'A seasonal farm activity offered when the vines are ready for harvest.',
+    image: '/images/feedback/activity-passion-fruit-picking.jpg',
+    imageAlt: 'Passion fruit growing across a leafy trellis',
+  },
+  {
+    id: 'mango-picking',
+    title: 'Mango Picking',
+    description: 'Explore mature mango trees during the farm harvest season.',
+    image: '/images/feedback/activity-mango-picking.jpg',
+    imageAlt: 'Mangoes growing across a mature tree at the farm',
+  },
+  {
+    id: 'outdoor-bbq',
+    title: 'Outdoor BBQ',
+    description: 'Gather around the grill for an easy camp meal under the trees.',
+    image: '/images/feedback/activity-bbq.jpg',
+    imageAlt: 'Tent and barbecue setup beneath mango trees at camp',
+  },
+  {
+    id: 'meetings-team-events',
+    title: 'Meetings & Team Events',
+    description: 'Open lawns make room for corporate offsites and larger group gatherings.',
+    image: '/images/feedback/activity-team-events.jpg',
+    imageAlt: 'Large team event group gathered on the campground lawn',
+  },
+  {
+    id: 'outdoor-movie-nights',
+    title: 'Outdoor Movie Nights',
+    description: 'Settle in beneath the tents for a relaxed shared movie after dark.',
+    image: '/images/feedback/activity-outdoor-movie.jpg',
+    imageAlt: 'Campers watching a movie beneath a dark tent canopy',
+  },
+  {
+    id: 'prewedding-photo-shoots',
+    title: 'Pre-wedding Photo Shoots',
+    description: 'Use the orchard, mature trees, and sunset views as a natural backdrop.',
+    image: '/images/feedback/activity-prewedding-shoot.jpg',
+    imageAlt: 'Couple posing beneath tall trees during a pre-wedding photo shoot',
+  },
+]
+
 export const tanayActivityGroups: ActivityGroup[] = [
   {
     title: 'Nature & Relaxation',
@@ -527,7 +672,7 @@ export const tanayNearbyAttractions: NearbyAttraction[] = [
     name: 'Daranak Falls',
     time: '27 mins away',
     distance: '15 km',
-    image: '/images/attractions/daranak-falls.jpg',
+    image: '/images/feedback/daranak-falls.jpg',
     imageAlt: 'Daranak Falls waterfall and swimming area in Tanay',
   },
   {
@@ -546,17 +691,36 @@ export const tanayNearbyAttractions: NearbyAttraction[] = [
   },
   {
     name: 'Pupot Cave and Spring',
-    time: '34 mins away',
-    distance: '15.4 km',
-    image: '/images/attractions/calinawan-cave.jpg',
-    imageAlt: 'Tanay cave limestone formations representing Pupot Cave and Spring',
+    time: 'See directions',
+    distance: 'Tanay, Rizal',
+    image: '/images/attractions/pupot-bukal.webp',
+    imageAlt: 'Clear spring water and shaded riverside huts at Pupot Bukal in Tanay',
+    link: {
+      href: 'https://www.google.com/maps/search/?api=1&query=Pupot+Cave+and+Spring+Tanay+Rizal',
+      label: 'View location',
+    },
   },
   {
-    name: 'El Patio Razon',
-    time: '34 mins away',
-    distance: '18.2 km',
-    image: '/images/attractions/el-patio-razon.jpg',
-    imageAlt: 'Kawa bath area with mountain views at El Patio Razon',
+    name: 'Mount Kulis',
+    time: 'See directions',
+    distance: 'Tanay, Rizal',
+    image: '/images/attractions/mount-kulis.jpg',
+    imageAlt: 'Mount Kulis summit marker overlooking the green ridges of Tanay',
+    link: {
+      href: 'https://share.google/fqohxs497ljr7LnKf',
+      label: 'View location',
+    },
+  },
+  {
+    name: 'Tanay Parola',
+    time: 'View page',
+    distance: 'Tanay, Rizal',
+    image: '/images/attractions/tanay-parola.jpg',
+    imageAlt: 'Tanay Parola lighthouse beside the water at sunset',
+    link: {
+      href: 'https://www.facebook.com/TanayParola/',
+      label: 'Visit Facebook page',
+    },
   },
   {
     name: 'San Ildefonso de Toledo Parish',
@@ -564,6 +728,10 @@ export const tanayNearbyAttractions: NearbyAttraction[] = [
     distance: '18.7 km',
     image: '/images/attractions/san-ildefonso-parish.jpg',
     imageAlt: 'Stone facade of San Ildefonso de Toledo Parish in Tanay',
+    link: {
+      href: 'https://share.google/WAY5oZuSzw6gOKenl',
+      label: 'View location',
+    },
   },
   {
     name: 'Masungi Georeserve',
@@ -583,8 +751,10 @@ export const tanayNearbyAttractions: NearbyAttraction[] = [
     name: 'Emprest Nature Park',
     time: '45 mins away',
     distance: '24.8 km',
-    image: '/images/attractions/masungi-georeserve.jpg',
-    imageAlt: 'Tanay mountain landscape representing Emprest Nature Park',
+    link: {
+      href: 'https://www.google.com/maps/search/?api=1&query=Emprest+Nature+Park+Tanay+Rizal',
+      label: 'View location',
+    },
   },
   {
     name: 'Batlag Falls',
@@ -602,7 +772,7 @@ export const amadeoNearbyAttractions: NearbyAttraction[] = [
     distance: '7.4 km',
     image: '/images/attractions/amadeo/balite-falls.jpg',
     imageAlt: 'Wide cascades flowing into the natural pool at Balite Falls in Amadeo',
-    mapUrl: 'https://maps.app.goo.gl/nmbgDmDiVCQma1Qd6',
+    link: { href: 'https://maps.app.goo.gl/nmbgDmDiVCQma1Qd6', label: 'Get directions' },
   },
   {
     name: 'Mayang Falls',
@@ -610,7 +780,7 @@ export const amadeoNearbyAttractions: NearbyAttraction[] = [
     distance: '4.5 km',
     image: '/images/attractions/amadeo/mayang-falls.jpg',
     imageAlt: 'Rocky cascade and tropical foliage at Mayang Falls in Trece Martires, Cavite',
-    mapUrl: 'https://maps.app.goo.gl/srD5zAe8t1oZXbbaA',
+    link: { href: 'https://maps.app.goo.gl/srD5zAe8t1oZXbbaA', label: 'Get directions' },
   },
   {
     name: "People's Park in the Sky",
@@ -618,7 +788,7 @@ export const amadeoNearbyAttractions: NearbyAttraction[] = [
     distance: '21.3 km',
     image: '/images/attractions/amadeo/peoples-park-in-the-sky.jpg',
     imageAlt: "Hilltop terraces and panoramic views at People's Park in the Sky in Tagaytay",
-    mapUrl: 'https://maps.app.goo.gl/rKsLkH33P5ZMzzem7',
+    link: { href: 'https://maps.app.goo.gl/rKsLkH33P5ZMzzem7', label: 'Get directions' },
   },
   {
     name: 'Palsahingin Falls',
@@ -626,7 +796,7 @@ export const amadeoNearbyAttractions: NearbyAttraction[] = [
     distance: '3.4 km',
     image: '/images/attractions/amadeo/palsahingin-falls.jpg',
     imageAlt: 'Forest waterfall and turquoise pool at Palsahingin Falls in Indang, Cavite',
-    mapUrl: 'https://maps.app.goo.gl/DqQXA2gjZCXxcuHN7',
+    link: { href: 'https://maps.app.goo.gl/DqQXA2gjZCXxcuHN7', label: 'Get directions' },
   },
   {
     name: 'Tagaytay Picnic Grove',
@@ -634,7 +804,7 @@ export const amadeoNearbyAttractions: NearbyAttraction[] = [
     distance: '17.5 km',
     image: '/images/attractions/amadeo/tagaytay-picnic-grove.jpg',
     imageAlt: 'Picnic shelters across the grassy hillside at Tagaytay Picnic Grove',
-    mapUrl: 'https://maps.app.goo.gl/DtkaBo7ny64vnPeo6',
+    link: { href: 'https://maps.app.goo.gl/DtkaBo7ny64vnPeo6', label: 'Get directions' },
   },
   {
     name: 'Mahogany Falls',
@@ -642,7 +812,7 @@ export const amadeoNearbyAttractions: NearbyAttraction[] = [
     distance: '1.7 km',
     image: '/images/attractions/amadeo/mahogany-falls.jpg',
     imageAlt: 'Small forest cascades and natural pool at Mahogany Falls in Trece Martires, Cavite',
-    mapUrl: 'https://maps.app.goo.gl/DGmMkr9By4LJ5wdJ7',
+    link: { href: 'https://maps.app.goo.gl/DGmMkr9By4LJ5wdJ7', label: 'Get directions' },
   },
   {
     name: 'Pulunan Bridge',
@@ -650,7 +820,7 @@ export const amadeoNearbyAttractions: NearbyAttraction[] = [
     distance: '9.4 km',
     image: '/images/attractions/amadeo/pulunan-bridge.jpg',
     imageAlt: 'Pulunan steel bridge above the riverside recreation area in Trece Martires, Cavite',
-    mapUrl: 'https://maps.app.goo.gl/wd4iEAKcLPPbVq496',
+    link: { href: 'https://maps.app.goo.gl/wd4iEAKcLPPbVq496', label: 'Get directions' },
   },
   {
     name: 'Paradizoo Theme Park',
@@ -658,7 +828,7 @@ export const amadeoNearbyAttractions: NearbyAttraction[] = [
     distance: '13.5 km',
     image: '/images/attractions/amadeo/paradizoo-theme-park.jpg',
     imageAlt: 'Paradizoo entrance sign surrounded by tropical greenery in Mendez, Cavite',
-    mapUrl: 'https://maps.app.goo.gl/3Z8L5WixRDHj7F7o8',
+    link: { href: 'https://maps.app.goo.gl/3Z8L5WixRDHj7F7o8', label: 'Get directions' },
   },
   {
     name: "Yoki's Farm",
@@ -666,7 +836,7 @@ export const amadeoNearbyAttractions: NearbyAttraction[] = [
     distance: '15.7 km',
     image: '/images/attractions/amadeo/yokis-farm.webp',
     imageAlt: "Yoki's Farm entrance sign and garden wall in Mendez, Cavite",
-    mapUrl: 'https://maps.app.goo.gl/FbqJ4E7P6AEBk58c8',
+    link: { href: 'https://maps.app.goo.gl/FbqJ4E7P6AEBk58c8', label: 'Get directions' },
   },
   {
     name: 'Puzzle Mansion',
@@ -674,43 +844,70 @@ export const amadeoNearbyAttractions: NearbyAttraction[] = [
     distance: 'Nearby Amadeo',
     image: '/images/attractions/amadeo/puzzle-mansion.jpg',
     imageAlt: 'Puzzle Mansion museum entrance and puzzle-shaped sign near Tagaytay',
-    mapUrl: 'https://maps.app.goo.gl/NdE5KV765yQekqWq9',
+    link: { href: 'https://maps.app.goo.gl/NdE5KV765yQekqWq9', label: 'Get directions' },
   },
 ]
 
-export const blogPosts: BlogPost[] = [
+export const announcements: Announcement[] = [
   {
-    id: '1',
+    id: 'camping-under-mango-trees',
     title: 'Camping Under the Mango Trees',
     excerpt: 'Settle into the orchard, pitch your tent, light the firepit, and let the cool Tanay wind set the pace.',
     content: 'A guide to slowing down at Tanay Windmills Viewpoint, from hammock time to bonfire nights.',
     image: '/images/campfire.jpg',
-    author: 'Windmills Camp Team',
-    date: '2026-05-26',
+    imageAlt: 'Campfire glowing at an outdoor campsite',
+    dateLabel: 'May 26, 2026',
     category: 'Camping',
     slug: 'camping-under-the-mango-trees',
+    status: 'active',
   },
   {
-    id: '2',
+    id: 'what-to-do-around-tanay',
     title: 'What to Do Around Tanay',
     excerpt: 'Wind farms, waterfalls, caves, nature reserves, and mountain viewpoints are all within a short drive.',
     content: 'Plan a day tour or overnight itinerary around the most accessible Tanay attractions.',
     image: '/images/yosemite.jpg',
-    author: 'Windmills Camp Team',
-    date: '2026-05-26',
+    imageAlt: 'Mountain scenery representing outdoor trips around Tanay',
+    dateLabel: 'May 26, 2026',
     category: 'Activities',
     slug: 'what-to-do-around-tanay',
+    status: 'active',
   },
   {
-    id: '3',
+    id: 'byot-camping-what-to-bring',
     title: 'BYOT Camping: What to Bring',
     excerpt: 'Bring your own tent, sleeping gear, cooking kit, weather layers, lights, and reusable camp essentials.',
     content: 'A practical packing guide for first-time and returning Windmills campers.',
     image: '/images/airstream-interior.jpg',
-    author: 'Windmills Camp Team',
-    date: '2026-05-26',
+    imageAlt: 'Organized interior representing camping equipment and preparation',
+    dateLabel: 'May 26, 2026',
     category: 'Packing Guide',
     slug: 'byot-camping-what-to-bring',
+    status: 'active',
+  },
+  {
+    id: 'passion-fruit-picking-offer',
+    title: 'Passion Fruit Picking at Tanay',
+    excerpt: 'An archived seasonal offer inviting visitors to pick fresh passion fruit at Tanay Windmills Viewpoint.',
+    content: 'This archived announcement featured seasonal passion fruit picking at the Tanay farm in Sitio Masalat, Sampaloc, Tanay, Rizal.',
+    image: '/images/feedback/announcement-passion-fruit-picking.jpg',
+    imageAlt: 'Archived Windmills Viewpoint passion fruit picking announcement',
+    dateLabel: 'Archived offer',
+    category: 'Seasonal Offer',
+    slug: 'passion-fruit-picking-offer',
+    status: 'archived',
+  },
+  {
+    id: 'overnight-camping-august-offer',
+    title: 'August Overnight Camping Weekend',
+    excerpt: 'An archived overnight camping announcement for the August 29-30 National Heroes holiday weekend.',
+    content: 'This archived reservation-only offer promoted overnight camping at Tanay Windmills Viewpoint for August 29 and 30.',
+    image: '/images/feedback/announcement-overnight-camping.jpg',
+    imageAlt: 'Archived overnight camping offer for August 29 and 30',
+    dateLabel: 'Archived offer',
+    category: 'Camping Offer',
+    slug: 'overnight-camping-august-offer',
+    status: 'archived',
   },
 ]
 
@@ -785,7 +982,7 @@ export const faqs: FAQ[] = [
     id: '5',
     question: 'Is the camp pet-friendly?',
     answer:
-      'Yes. The Tanay narrative confirms the camp is pet-friendly. Guests should still keep pets supervised and respectful of other campers.',
+      'Yes. The Tanay camp is pet-friendly. Guests should keep their pets supervised and respectful of other campers, and all campers should also be careful of the well-being and safety of other guests\' pets.',
     category: 'Policies',
   },
   {
@@ -808,7 +1005,5 @@ export const amenityIcons: Record<string, string> = {
   'Ground Lighting': 'lightbulb',
   'Pet-Friendly Grounds': 'dog',
   'Internet Access at Cafe': 'wifi',
-  'First Aid Station': 'cross',
-  'Camp Store': 'shopping-bag',
   'Waste Management': 'trash',
 }

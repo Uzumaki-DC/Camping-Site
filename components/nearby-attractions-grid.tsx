@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { MapPin } from 'lucide-react'
+import { ExternalLink, MapPin } from 'lucide-react'
 import type { NearbyAttraction } from '@/lib/data'
 
 interface NearbyAttractionsGridProps {
@@ -27,7 +27,7 @@ export function NearbyAttractionsGrid({ attractions, limit }: NearbyAttractionsG
           ) : (
             <div className="flex aspect-[4/3] items-center justify-center bg-secondary/45 px-6 text-center">
               <MapPin className="mr-2 h-5 w-5 text-primary" />
-              <span className="text-sm font-medium">Verified nearby stop</span>
+              <span className="text-sm font-medium">Nearby destination</span>
             </div>
           )}
           <div className="p-4">
@@ -36,9 +36,9 @@ export function NearbyAttractionsGrid({ attractions, limit }: NearbyAttractionsG
               <span>{attraction.distance}</span>
               <span className="whitespace-nowrap">{attraction.time}</span>
             </div>
-            {attraction.mapUrl && (
-              <a href={attraction.mapUrl} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline">
-                Get directions <MapPin className="h-3.5 w-3.5" />
+            {attraction.link && (
+              <a href={attraction.link.href} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline">
+                {attraction.link.label} <ExternalLink className="h-3.5 w-3.5" />
               </a>
             )}
           </div>
