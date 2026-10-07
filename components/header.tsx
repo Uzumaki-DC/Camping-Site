@@ -18,8 +18,8 @@ const navigation = [
   },
   { name: 'Activities', href: '/groups-events' },
   { name: 'Gallery', href: '/gallery' },
-  { name: "What's New", href: '/whats-new' },
-  { name: 'Camp Merch', href: '/camp-merch' },
+  { name: 'Offers', href: '/whats-new' },
+  { name: 'Merch', href: '/camp-merch' },
   {
     name: 'About',
     href: '/about',
@@ -47,28 +47,35 @@ export function Header({ transparent = false }: HeaderProps) {
       transparent ? 'bg-transparent' : 'bg-background/95 backdrop-blur-sm border-b border-border'
     )}>
       {/* Promo Banner */}
-      <div className="bg-primary text-primary-foreground text-center py-2 text-sm">
+      <div className="bg-primary text-primary-foreground text-center py-2 text-xs sm:text-sm">
         <Link href="/contact" className="hover:underline">
-          Tanay 2026 rates: day tour from PHP 150/adult, overnight from PHP 250/adult. Reserve via GCash downpayment.
+          <span className="sm:hidden">Tanay 2026: Day tour PHP 150, overnight PHP 250.</span>
+          <span className="hidden sm:inline">Tanay 2026 rates: day tour from PHP 150/adult, overnight from PHP 250/adult. Reserve via GCash downpayment.</span>
         </Link>
       </div>
 
-      <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <nav className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center">
+            <Link href="/" className="flex flex-col justify-center leading-none">
               <span className={cn(
-                'text-base sm:text-lg tracking-[0.15em] font-bold uppercase leading-tight',
+                'block text-sm tracking-[0.16em] font-bold uppercase sm:text-base',
                 transparent ? 'text-primary-foreground' : 'text-foreground'
               )}>
-                Windmills Viewpoint Camps
+                Windmills
+              </span>
+              <span className={cn(
+                'mt-1 block whitespace-nowrap text-xs tracking-[0.15em] font-bold uppercase sm:text-sm',
+                transparent ? 'text-primary-foreground' : 'text-foreground'
+              )}>
+                Viewpoint Camps
               </span>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden xl:flex xl:items-center xl:gap-x-5 2xl:gap-x-7">
+          <div className="hidden xl:flex xl:items-center xl:gap-x-6 2xl:gap-x-8">
             {navigation.map((item) => (
               <div
                 key={item.name}
@@ -112,7 +119,7 @@ export function Header({ transparent = false }: HeaderProps) {
           <div className="hidden xl:flex items-center gap-4">
             <Link
               href="/contact"
-              className="bg-primary text-primary-foreground px-6 py-2 text-sm font-medium uppercase tracking-wider hover:bg-primary/90 transition-colors"
+              className="bg-primary text-primary-foreground px-5 py-2 text-sm font-medium uppercase tracking-wider hover:bg-primary/90 transition-colors"
             >
               Reserve
             </Link>
@@ -141,7 +148,7 @@ export function Header({ transparent = false }: HeaderProps) {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="xl:hidden fixed inset-x-0 bottom-0 top-[100px] bg-background z-50 overflow-y-auto">
+        <div className="xl:hidden fixed inset-x-0 bottom-0 top-[96px] sm:top-[100px] bg-background z-50 overflow-y-auto">
           <div className="p-6 pb-12 space-y-3">
             {navigation.map((item) => (
               <div key={item.name}>

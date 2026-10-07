@@ -3,26 +3,30 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
-import { announcements } from '@/lib/data'
+import { whatsNewPosts } from '@/lib/data'
 
 export const metadata = {
-  title: "What's New | Windmills Viewpoint Camps",
-  description: 'Camp guides, seasonal notes, and archived offers from Windmills Viewpoint Camps.',
+  title: 'Offers | Windmills Viewpoint Camps',
+  description: 'Current camp updates, practical guides, seasonal activities, and stories from Windmills Viewpoint Camps.',
 }
 
 export default function WhatsNewPage() {
-  const currentGuides = announcements.filter((item) => item.status === 'active')
-  const archivedOffers = announcements.filter((item) => item.status === 'archived')
+  const currentGuides = whatsNewPosts
+    .filter((item) => item.section === 'guide')
+    .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
+  const campStories = whatsNewPosts
+    .filter((item) => item.section === 'activity')
+    .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
 
   return (
     <main className="min-h-screen">
       <Header />
       <section className="pt-32 pb-16 px-4 bg-primary text-primary-foreground">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="mb-4 text-xs uppercase tracking-[0.3em] text-primary-foreground/70">Camp Notes & Announcements</p>
-          <h1 className="text-4xl md:text-5xl font-serif mb-4">What&apos;s New</h1>
+          <p className="mb-4 text-xs uppercase tracking-[0.3em] text-primary-foreground/70">Camp Updates & Seasonal Activities</p>
+          <h1 className="text-4xl md:text-5xl font-serif mb-4">Offers</h1>
           <p className="text-primary-foreground/80 text-lg">
-            Practical camp guides, seasonal updates, and past Windmills announcements.
+            Current camp notes, practical guides, seasonal activities, and stories from the Windmills grounds.
           </p>
         </div>
       </section>
@@ -30,8 +34,8 @@ export default function WhatsNewPage() {
       <section className="py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="mb-10 max-w-2xl">
-            <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4">Plan Your Stay</p>
-            <h2 className="text-3xl md:text-5xl font-serif">Camp guides</h2>
+            <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4">Latest From Camp</p>
+            <h2 className="text-3xl md:text-5xl font-serif">Updates and guides</h2>
           </div>
           <div className="grid gap-8 md:grid-cols-3">
             {currentGuides.map((item) => (
@@ -60,23 +64,30 @@ export default function WhatsNewPage() {
       <section className="py-20 px-4 bg-secondary/30">
         <div className="max-w-7xl mx-auto">
           <div className="mb-10 max-w-2xl">
-            <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4">For Reference</p>
-            <h2 className="text-3xl md:text-5xl font-serif">Archived offers</h2>
-            <p className="mt-4 text-muted-foreground">These announcements are no longer active and are preserved as examples of past seasonal activities.</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4">From the Camp</p>
+            <h2 className="text-3xl md:text-5xl font-serif">Camp stories</h2>
+            <p className="mt-4 text-muted-foreground">
+              Seasonal activities, memorable weekends, and everyday experiences from around the Windmills grounds.
+            </p>
           </div>
           <div className="grid gap-8 md:grid-cols-2">
-            {archivedOffers.map((item) => (
-              <Link key={item.id} href={`/whats-new/${item.slug}`} className="group grid border border-border bg-background sm:grid-cols-[0.85fr_1fr]">
-                <div className="relative min-h-80 bg-muted sm:min-h-full">
-                  <Image src={item.image} alt={item.imageAlt} fill sizes="(min-width: 768px) 25vw, 100vw" className="object-contain p-3" />
+            {campStories.map((item) => (
+              <Link key={item.id} href={`/whats-new/${item.slug}`} className="group border border-border bg-background">
+                <div className="relative aspect-[16/10] overflow-hidden bg-muted">
+                  <Image
+                    src={item.image}
+                    alt={item.imageAlt}
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
-                <div className="p-6">
-                  <span className="inline-flex border border-border px-2 py-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">Archived</span>
-                  <p className="mt-5 text-xs uppercase tracking-wider text-muted-foreground">{item.category}</p>
-                  <h3 className="mt-2 text-2xl font-serif transition-colors group-hover:text-primary">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.excerpt}</p>
+                <div className="p-6 md:p-8">
+                  <p className="text-xs uppercase tracking-wider text-muted-foreground">{item.category} / {item.dateLabel}</p>
+                  <h3 className="mt-3 text-2xl md:text-3xl font-serif transition-colors group-hover:text-primary">{item.title}</h3>
+                  <p className="mt-4 leading-relaxed text-muted-foreground">{item.excerpt}</p>
                   <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-primary">
-                    View announcement <ArrowRight className="size-4" />
+                    Read story <ArrowRight className="size-4" />
                   </span>
                 </div>
               </Link>

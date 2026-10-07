@@ -21,6 +21,7 @@ interface LocationHeroCarouselProps {
   locationName: string
   shortName: string
   tagline: string
+  comingSoon?: boolean
 }
 
 export function LocationHeroCarousel({
@@ -28,6 +29,7 @@ export function LocationHeroCarousel({
   locationName,
   shortName,
   tagline,
+  comingSoon = false,
 }: LocationHeroCarouselProps) {
   const [api, setApi] = useState<CarouselApi>()
   const [selectedIndex, setSelectedIndex] = useState(0)
@@ -96,7 +98,12 @@ export function LocationHeroCarousel({
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/35 to-foreground/10" />
       <div className="absolute inset-x-0 top-28 px-4 sm:top-32">
         <div className="mx-auto max-w-7xl text-primary-foreground">
-          <p className="text-xs uppercase tracking-wider text-primary-foreground/75">{shortName}</p>
+          {comingSoon && (
+            <span className="inline-flex border border-primary-foreground/40 bg-foreground/35 px-3 py-1 text-xs font-medium uppercase tracking-wider backdrop-blur-sm">
+              Coming Soon
+            </span>
+          )}
+          <p className={`${comingSoon ? 'mt-5' : ''} text-xs uppercase tracking-wider text-primary-foreground/75`}>{shortName}</p>
           <h1 className="mt-3 max-w-4xl text-balance font-serif text-4xl leading-tight md:text-6xl">{locationName}</h1>
           <p className="mt-5 max-w-2xl text-base text-primary-foreground/85 md:text-lg">{tagline}</p>
         </div>

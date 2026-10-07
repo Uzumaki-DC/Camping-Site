@@ -69,6 +69,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
           locationName={location.name}
           shortName={location.shortName}
           tagline={location.tagline}
+          comingSoon={location.comingSoon}
         />
       ) : (
         <section className="relative h-[70vh] min-h-[540px]">

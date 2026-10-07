@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { Quote, Star } from 'lucide-react'
+import { ExternalLink, Quote, Star } from 'lucide-react'
 import {
   Carousel,
   CarouselContent,
@@ -60,6 +60,16 @@ export function TestimonialCarousel() {
                 <p className="font-medium text-foreground">{testimonial.author}</p>
                 {testimonial.date && (
                   <p className="mt-1 text-sm text-muted-foreground">{testimonial.date}</p>
+                )}
+                {testimonial.sourceUrl && (
+                  <a
+                    href={testimonial.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+                  >
+                    View original review <ExternalLink className="size-3.5" aria-hidden="true" />
+                  </a>
                 )}
               </footer>
             </article>

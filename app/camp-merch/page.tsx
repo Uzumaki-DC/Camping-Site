@@ -5,7 +5,7 @@ import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
 
 export const metadata = {
-  title: 'Camp Merch | Windmills Viewpoint Camps',
+  title: 'Merch | Windmills Viewpoint Camps',
   description: 'A preview of future Windmills camp merchandise.',
 }
 

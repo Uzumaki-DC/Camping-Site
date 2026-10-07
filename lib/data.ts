@@ -59,17 +59,18 @@ export interface NearbyAttraction {
   }
 }
 
-export interface Announcement {
+export interface BlogPost {
   id: string
   title: string
   excerpt: string
-  content: string
+  body: string[]
   image: string
   imageAlt: string
   dateLabel: string
+  publishedAt: string
   category: string
   slug: string
-  status: 'active' | 'archived'
+  section: 'guide' | 'activity'
 }
 
 export interface ActivityFeature {
@@ -94,6 +95,16 @@ export interface Testimonial {
   date?: string
   quote: string
   rating?: number
+  sourceUrl?: string
+}
+
+export interface InfluencerFeature {
+  id: string
+  creator: string
+  links: Array<{
+    platform: 'facebook' | 'youtube'
+    href: string
+  }>
 }
 
 export interface CampMedia {
@@ -264,7 +275,7 @@ export const locations: Location[] = [
       'Visitor numbers are regulated to preserve a peaceful camp atmosphere',
     ],
     nearbyAttractions: [
-      'Pililia Wind Farm',
+      'Pililla Wind Farm',
       'Regina Rica',
       'Daranak Falls',
       'Batlag Falls',
@@ -273,6 +284,7 @@ export const locations: Location[] = [
       'Mount Kulis',
       'Tanay Parola',
       'Masungi Georeserve',
+      'Treasure Mountain',
       'Tara sa Gulod',
     ],
     accommodationTypes: [
@@ -409,6 +421,7 @@ export const locations: Location[] = [
     ],
     weather: 'Crisp highland air, cool nights, and misty coffee-farm mornings.',
     bestTimeToVisit: 'Weekends, holidays, and cooler months for farm walks and firepit nights.',
+    comingSoon: true,
   },
 ]
 
@@ -655,11 +668,12 @@ export const campActivityGroups: Record<string, ActivityGroup[]> = {
 
 export const tanayNearbyAttractions: NearbyAttraction[] = [
   {
-    name: 'Pililia Wind Farm',
+    name: 'Pililla Wind Farm',
     time: '12 mins away',
     distance: '5.3 km',
     image: '/images/attractions/pililla-wind-farm.jpg',
     imageAlt: 'Wind turbines at Pililla Wind Farm in Rizal',
+    link: { href: 'https://maps.app.goo.gl/2mVmbryMtJRLd1b47', label: 'Get directions' },
   },
   {
     name: 'Regina Rica',
@@ -667,6 +681,7 @@ export const tanayNearbyAttractions: NearbyAttraction[] = [
     distance: '5.9 km',
     image: '/images/attractions/regina-rica.jpg',
     imageAlt: 'Regina Rica pilgrimage grounds in Tanay, Rizal',
+    link: { href: 'https://maps.app.goo.gl/qsBDMb57nbptRm2QA', label: 'Get directions' },
   },
   {
     name: 'Daranak Falls',
@@ -674,6 +689,7 @@ export const tanayNearbyAttractions: NearbyAttraction[] = [
     distance: '15 km',
     image: '/images/feedback/daranak-falls.jpg',
     imageAlt: 'Daranak Falls waterfall and swimming area in Tanay',
+    link: { href: 'https://maps.app.goo.gl/RMVghKyztbEUqudb7', label: 'Get directions' },
   },
   {
     name: 'Calinawan Cave',
@@ -681,6 +697,7 @@ export const tanayNearbyAttractions: NearbyAttraction[] = [
     distance: '14.9 km',
     image: '/images/attractions/calinawan-cave.jpg',
     imageAlt: 'Limestone entrance of Calinawan Cave in Tanay',
+    link: { href: 'https://maps.app.goo.gl/Y7bYFGbsXbMxu5HC6', label: 'Get directions' },
   },
   {
     name: 'Tara sa Gulod',
@@ -688,38 +705,39 @@ export const tanayNearbyAttractions: NearbyAttraction[] = [
     distance: '14.3 km',
     image: '/images/attractions/tara-sa-gulod.jpg',
     imageAlt: 'Ridge viewpoint and mountain scenery at Tara sa Gulod',
+    link: { href: 'https://maps.app.goo.gl/J8aoMrwo9BdTHdiPA', label: 'Get directions' },
   },
   {
     name: 'Pupot Cave and Spring',
-    time: 'See directions',
-    distance: 'Tanay, Rizal',
+    time: '34 mins away',
+    distance: '15.4 km',
     image: '/images/attractions/pupot-bukal.webp',
     imageAlt: 'Clear spring water and shaded riverside huts at Pupot Bukal in Tanay',
     link: {
-      href: 'https://www.google.com/maps/search/?api=1&query=Pupot+Cave+and+Spring+Tanay+Rizal',
-      label: 'View location',
+      href: 'https://maps.app.goo.gl/sKcevhsHj192N8yn8',
+      label: 'Get directions',
     },
   },
   {
     name: 'Mount Kulis',
-    time: 'See directions',
-    distance: 'Tanay, Rizal',
+    time: '36 mins away',
+    distance: '18.1 km',
     image: '/images/attractions/mount-kulis.jpg',
     imageAlt: 'Mount Kulis summit marker overlooking the green ridges of Tanay',
     link: {
-      href: 'https://share.google/fqohxs497ljr7LnKf',
-      label: 'View location',
+      href: 'https://www.google.com/maps/dir/?api=1&destination=Mount+Kulis+Tanay+Rizal',
+      label: 'Get directions',
     },
   },
   {
     name: 'Tanay Parola',
-    time: 'View page',
-    distance: 'Tanay, Rizal',
+    time: '45 mins away',
+    distance: '19.9 km',
     image: '/images/attractions/tanay-parola.jpg',
     imageAlt: 'Tanay Parola lighthouse beside the water at sunset',
     link: {
-      href: 'https://www.facebook.com/TanayParola/',
-      label: 'Visit Facebook page',
+      href: 'https://www.google.com/maps/dir/?api=1&destination=Tanay+Parola+Tanay+Rizal',
+      label: 'Get directions',
     },
   },
   {
@@ -729,8 +747,8 @@ export const tanayNearbyAttractions: NearbyAttraction[] = [
     image: '/images/attractions/san-ildefonso-parish.jpg',
     imageAlt: 'Stone facade of San Ildefonso de Toledo Parish in Tanay',
     link: {
-      href: 'https://share.google/WAY5oZuSzw6gOKenl',
-      label: 'View location',
+      href: 'https://maps.app.goo.gl/vZVBLhTAy5oSELH77',
+      label: 'Get directions',
     },
   },
   {
@@ -739,6 +757,15 @@ export const tanayNearbyAttractions: NearbyAttraction[] = [
     distance: '22.1 km',
     image: '/images/attractions/masungi-georeserve.jpg',
     imageAlt: 'Limestone landscape and trail scenery at Masungi Georeserve',
+    link: { href: 'https://maps.app.goo.gl/is3UDeodJAva9j3C9', label: 'Get directions' },
+  },
+  {
+    name: 'Treasure Mountain',
+    time: '35 mins away',
+    distance: '18.1 km',
+    image: '/images/attractions/treasure-mountain.jpg',
+    imageAlt: 'Mountain ridges and cloud views from Treasure Mountain in Tanay',
+    link: { href: 'https://maps.app.goo.gl/CZJaeAAPc1LARfua8', label: 'Get directions' },
   },
   {
     name: 'Paglitaw Natural Pool',
@@ -746,14 +773,17 @@ export const tanayNearbyAttractions: NearbyAttraction[] = [
     distance: '16.7 km',
     image: '/images/attractions/paglitaw-natural-pool.jpg',
     imageAlt: 'Turquoise natural pool surrounded by trees at Paglitaw Natural Pool',
+    link: { href: 'https://maps.app.goo.gl/HgtxV2JFGKtrwkjB7', label: 'Get directions' },
   },
   {
     name: 'Emprest Nature Park',
     time: '45 mins away',
     distance: '24.8 km',
+    image: '/images/attractions/emprest-nature-park.png',
+    imageAlt: 'Clear natural pool surrounded by rocks and forest at Emprest Nature Park',
     link: {
-      href: 'https://www.google.com/maps/search/?api=1&query=Emprest+Nature+Park+Tanay+Rizal',
-      label: 'View location',
+      href: 'https://maps.app.goo.gl/1rcqXTvfQEQczRUA9',
+      label: 'Get directions',
     },
   },
   {
@@ -762,6 +792,7 @@ export const tanayNearbyAttractions: NearbyAttraction[] = [
     distance: '25.2 km',
     image: '/images/attractions/batlag-falls.jpg',
     imageAlt: 'Batlag Falls waterfall in Tanay, Rizal',
+    link: { href: 'https://maps.app.goo.gl/PjhZxGRoZqah8GUX9', label: 'Get directions' },
   },
 ]
 
@@ -848,66 +879,88 @@ export const amadeoNearbyAttractions: NearbyAttraction[] = [
   },
 ]
 
-export const announcements: Announcement[] = [
+export const whatsNewPosts: BlogPost[] = [
   {
     id: 'camping-under-mango-trees',
     title: 'Camping Under the Mango Trees',
     excerpt: 'Settle into the orchard, pitch your tent, light the firepit, and let the cool Tanay wind set the pace.',
-    content: 'A guide to slowing down at Tanay Windmills Viewpoint, from hammock time to bonfire nights.',
-    image: '/images/campfire.jpg',
-    imageAlt: 'Campfire glowing at an outdoor campsite',
+    body: [
+      'A stay beneath the mango trees is an invitation to slow down. Choose a shaded clearing, settle into your campsite, and let the cool Tanay wind set the pace for the day.',
+      'Spend the afternoon in a hammock or around the cafe, then gather beside the firepit as the campsite grows quieter after sunset.',
+    ],
+    image: '/images/feedback/filipino-family-camping.jpg',
+    imageAlt: 'Filipino family enjoying a camping trip together',
     dateLabel: 'May 26, 2026',
+    publishedAt: '2026-05-26',
     category: 'Camping',
     slug: 'camping-under-the-mango-trees',
-    status: 'active',
+    section: 'guide',
   },
   {
     id: 'what-to-do-around-tanay',
     title: 'What to Do Around Tanay',
     excerpt: 'Wind farms, waterfalls, caves, nature reserves, and mountain viewpoints are all within a short drive.',
-    content: 'Plan a day tour or overnight itinerary around the most accessible Tanay attractions.',
-    image: '/images/yosemite.jpg',
-    imageAlt: 'Mountain scenery representing outdoor trips around Tanay',
+    body: [
+      'Tanay makes it easy to combine a campsite stay with a day of exploring. Wind farms, waterfalls, caves, nature reserves, and mountain viewpoints are all within driving distance of the camp.',
+      'Choose one or two nearby stops for a relaxed itinerary, then return to Windmills Viewpoint Camps before sunset for dinner, coffee, and an evening beneath the trees.',
+    ],
+    image: '/images/tanay-campers/camper-22.jpg',
+    imageAlt: 'Pililla wind turbines across the hills near the Tanay camp',
     dateLabel: 'May 26, 2026',
+    publishedAt: '2026-05-26',
     category: 'Activities',
     slug: 'what-to-do-around-tanay',
-    status: 'active',
+    section: 'guide',
   },
   {
     id: 'byot-camping-what-to-bring',
     title: 'BYOT Camping: What to Bring',
     excerpt: 'Bring your own tent, sleeping gear, cooking kit, weather layers, lights, and reusable camp essentials.',
-    content: 'A practical packing guide for first-time and returning Windmills campers.',
-    image: '/images/airstream-interior.jpg',
-    imageAlt: 'Organized interior representing camping equipment and preparation',
+    body: [
+      'A comfortable bring-your-own-tent stay starts with dependable shelter, sleeping gear, lighting, and clothing for changing highland weather.',
+      'Pack a cooking kit, drinking water, reusable dining essentials, personal toiletries, and a small rubbish bag so your campsite stays organized throughout the visit.',
+    ],
+    image: '/images/tanay-campers/camper-4.jpg',
+    imageAlt: 'Guest tents and vehicles set up beneath the mango trees in Tanay',
     dateLabel: 'May 26, 2026',
+    publishedAt: '2026-05-26',
     category: 'Packing Guide',
     slug: 'byot-camping-what-to-bring',
-    status: 'active',
+    section: 'guide',
   },
   {
     id: 'passion-fruit-picking-offer',
-    title: 'Passion Fruit Picking at Tanay',
-    excerpt: 'An archived seasonal offer inviting visitors to pick fresh passion fruit at Tanay Windmills Viewpoint.',
-    content: 'This archived announcement featured seasonal passion fruit picking at the Tanay farm in Sitio Masalat, Sampaloc, Tanay, Rizal.',
-    image: '/images/feedback/announcement-passion-fruit-picking.jpg',
-    imageAlt: 'Archived Windmills Viewpoint passion fruit picking announcement',
-    dateLabel: 'Archived offer',
-    category: 'Seasonal Offer',
+    title: 'Passion Fruit Picking Season at Tanay',
+    excerpt: 'When the vines are ready, passion fruit picking adds a fresh farm experience to a day tour or overnight camp.',
+    body: [
+      'Passion fruit grows across trellised sections of the Tanay farm, creating a leafy walk beneath hanging vines and ripening fruit.',
+      'When harvest conditions allow, campers can make fruit picking part of a day tour or overnight stay and enjoy a closer look at the working landscape around the campsite.',
+      'The activity depends on the harvest, weather, and fruit availability. Contact the camp before visiting to confirm whether picking is available on your preferred date.',
+    ],
+    image: '/images/feedback/activity-passion-fruit-picking.jpg',
+    imageAlt: 'Passion fruit growing from leafy trellised vines at the Tanay farm',
+    dateLabel: 'May 1, 2026',
+    publishedAt: '2026-05-01',
+    category: 'Seasonal Activity',
     slug: 'passion-fruit-picking-offer',
-    status: 'archived',
+    section: 'activity',
   },
   {
     id: 'overnight-camping-august-offer',
-    title: 'August Overnight Camping Weekend',
-    excerpt: 'An archived overnight camping announcement for the August 29-30 National Heroes holiday weekend.',
-    content: 'This archived reservation-only offer promoted overnight camping at Tanay Windmills Viewpoint for August 29 and 30.',
-    image: '/images/feedback/announcement-overnight-camping.jpg',
-    imageAlt: 'Archived overnight camping offer for August 29 and 30',
-    dateLabel: 'Archived offer',
-    category: 'Camping Offer',
+    title: 'A Holiday Weekend Under the Windmills',
+    excerpt: 'Cool evenings, illuminated tents, and quiet orchard grounds make long weekends a natural fit for an overnight stay.',
+    body: [
+      'Holiday weekends bring families and friends together beneath the mango trees for a slower evening away from the city.',
+      'As daylight fades, campsite lights and firepit gatherings transform the orchard into a relaxed overnight setting for shared meals, coffee, and conversation.',
+      'Long-weekend stays are reservation based and availability changes with the season. Contact the camp for current dates, rates, and remaining campsite capacity.',
+    ],
+    image: '/images/feedback/tanay-night-camp-tents.jpg',
+    imageAlt: 'Illuminated family tents beneath the trees at the Tanay campsite',
+    dateLabel: 'August 29, 2025',
+    publishedAt: '2025-08-29',
+    category: 'Camp Story',
     slug: 'overnight-camping-august-offer',
-    status: 'archived',
+    section: 'activity',
   },
 ]
 
@@ -946,6 +999,91 @@ export const testimonials: Testimonial[] = [
     date: 'January 26, 2025',
     quote:
       'A tranquil experience. They have very friendly and accommodating staff. The whole camp area is quite big and could put up a lot of campers at the same time. It is also easy to get to. We will definitely come back.',
+  },
+]
+
+export const influencerFeatures: InfluencerFeature[] = [
+  {
+    id: 'yats-tv',
+    creator: 'Yats TV',
+    links: [{ platform: 'facebook', href: 'https://www.facebook.com/share/r/196Vu7D8SV/' }],
+  },
+  {
+    id: 'the-wondering-two-ph',
+    creator: 'thewonderingtwoph',
+    links: [
+      { platform: 'facebook', href: 'https://www.facebook.com/share/r/14ii9kXhJsj/' },
+      { platform: 'facebook', href: 'https://www.facebook.com/share/r/1FDXY8h1Ph/' },
+    ],
+  },
+  {
+    id: 'arki-campin',
+    creator: 'Arki Campin',
+    links: [{ platform: 'youtube', href: 'https://youtu.be/C6Y7Rm3VSik?si=tz6Q9w7bRbSQ70xD' }],
+  },
+  {
+    id: 'ed-jhay',
+    creator: 'Ed Jhay',
+    links: [{ platform: 'youtube', href: 'https://youtu.be/bqI6h5d1yfY?si=Gi6F5coQRsfW78iZ' }],
+  },
+  {
+    id: 'rango-adventures',
+    creator: 'Rango Adventures',
+    links: [{ platform: 'youtube', href: 'https://youtu.be/igq6x1_QQi8?si=DsAzDPtNg4wdRplL' }],
+  },
+  {
+    id: 'the-nomads',
+    creator: 'The Nomads',
+    links: [
+      { platform: 'facebook', href: 'https://www.facebook.com/share/p/1DrqMDj8xn/' },
+      { platform: 'facebook', href: 'https://www.facebook.com/share/r/14cJePqiBJK/' },
+    ],
+  },
+  {
+    id: 'mabs-and-may',
+    creator: 'Mabs & May',
+    links: [{ platform: 'youtube', href: 'https://youtu.be/ceddFGIEnrg?si=A20TLYfI-xREDSGc' }],
+  },
+  {
+    id: 'bgtv',
+    creator: 'BGtv',
+    links: [
+      { platform: 'facebook', href: 'https://www.facebook.com/share/v/1Baap1YfAv/' },
+      { platform: 'facebook', href: 'https://www.facebook.com/share/r/1Cu1SJVRcT/' },
+    ],
+  },
+  {
+    id: 'unoss-vlog',
+    creator: 'Unoss Vlog',
+    links: [{ platform: 'youtube', href: 'https://youtu.be/ox03ZNtreN4?si=3bKOB2as3I1EU9oM' }],
+  },
+  {
+    id: 'kanoki-adventure',
+    creator: 'Kanoki Adventure',
+    links: [
+      { platform: 'facebook', href: 'https://www.facebook.com/share/r/1J7N5XtY6t/' },
+      { platform: 'youtube', href: 'https://youtu.be/UZ37S-lQLmw?si=H9tTOADFhBXaweVy' },
+    ],
+  },
+  {
+    id: 'rventures-ph',
+    creator: 'Rventures PH',
+    links: [{ platform: 'youtube', href: 'https://youtu.be/dXIYUZvU_6Y?si=uckHlAsAOIk3dGIs' }],
+  },
+  {
+    id: 'koywenfamily-tv',
+    creator: 'KoyWenFamily TV',
+    links: [{ platform: 'youtube', href: 'https://youtu.be/WE54JzgLhSE?si=LaeCxw12SfeR6Kmx' }],
+  },
+  {
+    id: 'lakwatsero-projectlaboy',
+    creator: 'Lakwatsero projectlaboy',
+    links: [{ platform: 'facebook', href: 'https://www.facebook.com/share/v/1Awwh3RNge/' }],
+  },
+  {
+    id: 'wanderbeans',
+    creator: 'WanderBeans',
+    links: [{ platform: 'facebook', href: 'https://www.facebook.com/share/r/1B3QRC7Bmn/' }],
   },
 ]
 
